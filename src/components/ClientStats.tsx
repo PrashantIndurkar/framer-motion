@@ -21,9 +21,7 @@ const memoryImages = [
   '/image/imgi_20_lEVDQNWDkdXcIlfM1j2Kfmp8at8.png',
   '/image/imgi_21_zRjU5BQHkKDyauYKM2E6MQnLpo.png',
   '/image/imgi_22_38I07rfLJ4DXJRQZ7YXCanY6ko.png',
-  '/image/imgi_23_y3RHLHQboDd91CD2B0QwpU4pno.png',
-  '/image/imgi_24_UK3ji9XKftVKablDa07xbZ7o.jpg',
-];
+].slice(0, 13);
 
 export const ClientStats = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -31,26 +29,27 @@ export const ClientStats = () => {
   return (
     <section 
       ref={sectionRef} 
-      className="relative pt-80 pb-80 md:pt-96 md:pb-96 overflow-hidden bg-background z-20"
+      className="relative pt-96 pb-96 md:pt-[400px] md:pb-[400px] overflow-hidden bg-background z-20"
     >
       {/* Background Arc Gallery */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-visible">
+      <div className="absolute inset-0 z-20 pointer-events-none overflow-visible">
         <ArcGalleryHero 
           images={memoryImages} 
-          startAngle={190} 
-          endAngle={-10} 
+          scrollRef={sectionRef}
+          startAngle={195} 
+          endAngle={-15} 
           radiusLg={520}
           radiusMd={420}
           radiusSm={300}
           cardSizeLg={110}
           cardSizeMd={90}
           cardSizeSm={60}
-          className="absolute top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2"
+          className="absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2"
         />
       </div>
 
       {/* Main Content: Headline and CTA */}
-      <Container className="relative z-10 flex flex-col items-center text-center">
+      <Container className="relative z-30 flex flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

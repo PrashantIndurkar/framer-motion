@@ -1,14 +1,13 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { Text } from '@/components/ui/text';
-import { Button } from '@/components/ui/button';
 
 // --- The ArcGalleryHero Component ---
 type ArcGalleryHeroProps = {
   images: string[];
+  scrollRef?: React.RefObject<HTMLElement>;
   startAngle?: number;
   endAngle?: number;
   // radius for different screen sizes
@@ -25,6 +24,7 @@ type ArcGalleryHeroProps = {
 
 export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
   images,
+  scrollRef,
   startAngle = 20,
   endAngle = 160,
   radiusLg = 480,
@@ -38,6 +38,19 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
   const [dimensions, setDimensions] = useState({
     radius: radiusLg,
     cardSize: cardSizeLg,
+  });
+
+  // Scroll-driven animation - tied to the section ref for precision
+  const { scrollYProgress } = useScroll({
+    target: scrollRef,
+    offset: ["start end", "end start"]
+  });
+
+  const rotateTransform = useTransform(scrollYProgress, [0, 1], [30, -30]);
+  const rotate = useSpring(rotateTransform, {
+    stiffness: 80,
+    damping: 25,
+    restDelta: 0.001
   });
 
   // Effect to handle responsive resizing of the arc and cards
@@ -63,17 +76,15 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
   const step = (endAngle - startAngle) / (count - 1);
 
   return (
-    <div className={cn(
-      "relative overflow-hidden w-full",
-      className
-    )}>
+    <div className={cn("relative overflow-hidden w-full", className)}>
       {/* Background ring container that controls geometry */}
-      <div
-        className="relative mx-auto"
+      <motion.div
+        className="relative mx-auto origin-center"
         style={{
           width: '100%',
           // Give it enough height to show the full arc around the text
           height: dimensions.radius * 2.0,
+          rotate: rotate,
         }}
       >
         {/* Center pivot for transforms - positioned at center-ish for better wrapping */}
@@ -84,16 +95,26 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
             const angleRad = (angle * Math.PI) / 180;
             
             // Calculate x and y positions on the arc
-            // We use -Math.sin for x and -Math.cos for y to center it correctly if needed, 
-            // but let's stick to the current logic and just offset the center.
             const x = Math.cos(angleRad) * dimensions.radius;
             const y = Math.sin(angleRad) * dimensions.radius;
+            
+            // Calculate effects based on position (blur and fade out only at the very ends)
+            const midIndex = (count - 1) / 2;
+            const distanceRef = Math.abs(i - midIndex) / midIndex; // 0 at center, 1 at edges
+            
+            // Steeper curves ensure sharpness for almost all avatars, with a very subtle fade/blur at the absolute ends
+            const opacity = Math.max(0.4, 1 - Math.pow(distanceRef, 6));
+            const blurValue = Math.pow(distanceRef, 10) * 2; // Max 2px blur, extremely localized
             
             return (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
+                animate={{ 
+                  opacity: opacity, 
+                  scale: 1,
+                  filter: `blur(${blurValue}px)`
+                }}
                 transition={{ 
                   duration: 0.4, 
                   delay: i * 0.03,
@@ -104,18 +125,15 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
                   width: dimensions.cardSize,
                   height: dimensions.cardSize,
                   left: `calc(50% + ${x}px)`,
-                  // Position relative to center
                   top: `calc(50% - ${y}px)`,
                   transform: `translate(-50%, -50%)`,
                   zIndex: count - i,
                 }}
               >
-                <div 
-                  className="rounded-full shadow-xl overflow-hidden border-[4px] border-white bg-white dark:bg-neutral-900 transition-all duration-300 hover:scale-110 w-full h-full"
-                >
+                <div className="rounded-full shadow-xl overflow-hidden border-[4px] border-white bg-white dark:bg-neutral-900 transition-all duration-300 hover:scale-110 w-full h-full">
                   <img
                     src={src}
-                    alt={`Memory ${i + 1}`}
+                    alt={`User ${i + 1}`}
                     className="block w-full h-full object-cover"
                     draggable={false}
                     onError={(e) => {
@@ -127,7 +145,7 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
             );
           })}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import Marquee from "@/components/ui/marquee";
 import { cn } from "@/lib/utils";
 import { AnimatedFolder } from "@/components/ui/3d-folder";
+import { AnimatedButton } from "@/components/ui/animated-button";
 
 const portfolioData = [
   {
@@ -54,9 +55,11 @@ const HowItWorks = () => {
               </div>
               
               <div className="mt-6">
-                <Button className="w-full h-[56px] rounded-full bg-black text-white text-[16px] font-bold hover:bg-neutral-900 transition-all shadow-[0_12px_24px_rgba(0,0,0,0.12)] active:scale-[0.98]">
+                <AnimatedButton 
+                  className="w-full h-[56px] shadow-[0_12px_24px_rgba(0,0,0,0.12)]"
+                >
                   Join today
-                </Button>
+                </AnimatedButton>
               </div>
             </div>
 

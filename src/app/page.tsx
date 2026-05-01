@@ -1,3 +1,5 @@
+"use client";
+
 import { MarqueeChips } from "@/components/MarqueeChips";
 import { BrandMarquee } from "@/components/BrandMarquee";
 import { Text } from "@/components/ui/text";
@@ -8,6 +10,11 @@ import { ClientStats } from "@/components/ClientStats";
 import { Features } from "@/components/Features";
 import { BookCallPill } from "@/components/BookCallPill";
 import { Testimonials } from "@/components/Testimonials";
+import Pricing from "@/components/Pricing";
+import BlogSection from "@/components/BlogSection";
+import BlogGridSection from "@/components/BlogGridSection";
+import { AnimatedButton } from "@/components/ui/animated-button";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function Home() {
@@ -66,9 +73,11 @@ export default function Home() {
 
             {/* CTA Section */}
             <div className="mt-12 flex flex-col md:flex-row items-start md:items-center gap-4">
-              <Button className="h-[56px] px-8 text-[15px] font-bold rounded-full bg-black text-white hover:bg-neutral-800 transition-all shadow-[0_8px_20px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.15)] active:scale-95">
+              <AnimatedButton 
+                className="shadow-[0_8px_20px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.15)]"
+              >
                 See Pricing
-              </Button>
+              </AnimatedButton>
 
               
               <BookCallPill />
@@ -94,6 +103,15 @@ export default function Home() {
 
       {/* Testimonials Section */}
       <Testimonials />
+
+      {/* Pricing Section */}
+      <Pricing />
+
+      {/* Blog Section */}
+      <BlogSection />
+
+      {/* Blog Grid Section */}
+      <BlogGridSection />
     </main>
   );
 }

@@ -23,7 +23,7 @@ export const TestimonialCard = ({
   return (
     <div
       className={cn(
-        "flex flex-col w-[365px] h-[223px] p-6 bg-white rounded-[16px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-black/[0.03] shrink-0",
+        "flex flex-col w-[365px] h-[223px] p-6 bg-white rounded-[16px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#fafafa] shrink-0",
         className
       )}
     >

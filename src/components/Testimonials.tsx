@@ -117,14 +117,11 @@ export const Testimonials = () => {
         getting things <span className="italic font-serif font-medium">done.</span>
       </h2>
 
-      {/* Carousel Container restricted to 3 cards width */}
       <div className="relative w-full flex justify-center">
         <div 
           className="relative overflow-hidden py-10 -my-10"
           style={{ 
             width: `${cardWidth * 3 + gap * 2}px`,
-            maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)'
           }}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
