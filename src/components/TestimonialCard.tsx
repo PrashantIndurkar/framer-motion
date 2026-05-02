@@ -23,34 +23,36 @@ export const TestimonialCard = ({
   return (
     <div
       className={cn(
-        "flex flex-col w-[365px] h-[223px] p-6 bg-white rounded-[16px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#fafafa] shrink-0",
+        "bg-white p-2 rounded-[32px] w-[365px] h-[223px] shadow-md border border-black/5 shrink-0 group transition-all duration-300",
         className
       )}
     >
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <div className="relative w-10 h-10 rounded-full overflow-hidden bg-gray-100">
-            <Image
-              src={avatar}
-              alt={name}
-              fill
-              className="object-cover"
-            />
+      <div className="bg-[#F7F7F7] p-6 rounded-[24px] h-full w-full">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-3">
+            <div className="relative w-10 h-10 rounded-full overflow-hidden bg-gray-100 border border-black/5">
+              <Image
+                src={avatar}
+                alt={name}
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[15px] font-semibold text-black leading-tight">
+                {name}
+              </span>
+              <span className="text-[13px] text-black/40 font-medium">
+                {role}
+              </span>
+            </div>
           </div>
-          <div className="flex flex-col">
-            <span className="text-[15px] font-semibold text-black leading-tight">
-              {name}
-            </span>
-            <span className="text-[13px] text-black/40 font-medium">
-              {role}
-            </span>
-          </div>
+          <Quote className="w-6 h-6 text-black/5 rotate-180" />
         </div>
-        <Quote className="w-6 h-6 text-black/5 rotate-180" />
+        <p className="text-[15px] leading-[1.6] text-black/70 font-medium line-clamp-3">
+          {content}
+        </p>
       </div>
-      <p className="text-[15px] leading-[1.6] text-black/70 font-medium">
-        {content}
-      </p>
     </div>
   );
 };

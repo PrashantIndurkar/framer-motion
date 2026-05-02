@@ -17,7 +17,7 @@ export const BookCallPill = ({ className }: BookCallPillProps) => {
       initial="initial"
       whileHover="hover"
       className={cn(
-        "flex items-center bg-white border border-black/[0.04] p-1.5 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.06)] transition-all cursor-pointer group h-[56px] w-fit min-w-[224px] overflow-hidden relative",
+        "flex items-center bg-white border border-black/5 p-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer group h-[56px] w-fit min-w-[224px] overflow-hidden relative",
         className
       )}
     >

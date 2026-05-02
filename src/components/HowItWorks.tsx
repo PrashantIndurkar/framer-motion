@@ -46,7 +46,7 @@ const HowItWorks = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   className="px-3 py-1 bg-white border border-black/[0.08] rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.03)] flex items-center justify-center"
                 >
-                  <span className="text-[10px] font-bold uppercase tracking-[0.08em] text-black leading-none">Popular</span>
+                  <span className="text-sm font-semibold  text-black">Popular</span>
                 </motion.div>
               </div>
               
@@ -103,10 +103,11 @@ const HowItWorks = () => {
               initial={{ rotate: 0 }}
               whileInView={{ rotate: 3 }}
               viewport={{ once: true }}
+              style={{ fontFamily: "var(--font-source-serif)" }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="w-14 h-14 bg-black rounded-2xl flex items-center justify-center shadow-2xl pointer-events-auto"
+              className=" bg-black rounded-2xl flex items-center justify-center shadow-2xl pointer-events-auto"
             >
-               <span className="text-white text-2xl font-serif italic">W</span>
+               <span style={{ fontFamily: "var(--font-source-serif)" }} className="text-white text-6xl p-4 px-5 font-serif italic font-semibold">w</span>
             </motion.div>
           </div>
         </div>
@@ -138,7 +139,7 @@ const HowItWorks = () => {
             transition={{ duration: 0.4 }}
             className="mb-10"
           >
-            <span className="px-6 py-2 bg-white border border-black/5 rounded-full text-[14px] font-bold text-black/40 shadow-sm uppercase tracking-widest">
+            <span className="px-4 py-1.5 bg-white border border-black/5 rounded-full text-base font-semibold text-black shadow-sm">
               How it works
             </span>
           </motion.div>
@@ -152,9 +153,9 @@ const HowItWorks = () => {
             <Text 
               as="h2" 
               variant="outfit"
-              className="text-5xl md:text-6xl lg:text-[72px] font-bold tracking-tight max-w-5xl leading-[1.02] text-black"
+              className="text-5xl md:text-6xl lg:text-[56px] font-semibold tracking-tight max-w-5xl leading-[1.02] text-black"
             >
-              Welcome to the <Text as="span" variant="serif" className="italic font-serif">better</Text> way <br className="hidden md:block" />
+              Welcome to the <Text as="span" variant="serif" className="italic font-serif" style={{ fontFamily: "var(--font-source-serif)" }}>better</Text> way <br className="hidden md:block" />
               of getting design done.
             </Text>
           </motion.div>
@@ -170,17 +171,19 @@ const HowItWorks = () => {
               transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
               className="flex flex-col w-full max-w-[384px]"
             >
-              <div className="bg-white rounded-[32px] h-[450px] shadow-[0_8px_30px_rgba(0,0,0,0.04)] flex flex-col group hover:shadow-[0_30px_60px_rgba(0,0,0,0.08)] transition-all duration-700 relative">
-                <div className="h-[233px] w-full">
-                  {card.visual}
-                </div>
-                <div className="flex flex-col flex-grow p-8 pt-0 mt-8">
-                  <Text as="h3" variant="outfit" className="text-[28px] font-bold mb-4 tracking-tight text-black leading-tight">
-                    {card.title}
-                  </Text>
-                  <Text className="text-[17px] text-black/50 leading-relaxed font-medium tracking-tight font-sans">
-                    {card.description}
-                  </Text>
+              <div className="bg-white p-2 rounded-[32px] h-[450px] shadow-md border border-black/5 flex flex-col group hover:shadow-xl transition-all duration-700 relative">
+                <div className="flex flex-col h-full w-full bg-[#F7F7F7] rounded-[24px] overflow-hidden">
+                  <div className="h-[233px] w-full">
+                    {card.visual}
+                  </div>
+                  <div className="flex flex-col flex-grow p-8 pt-0 mt-8">
+                    <Text as="h3" variant="outfit" className="text-[28px] font-semibold mb-4 tracking-tight text-black leading-tight">
+                      {card.title}
+                    </Text>
+                    <Text className="text-lg text-black/40 leading-relaxed font-medium tracking-tight font-sans">
+                      {card.description}
+                    </Text>
+                  </div>
                 </div>
               </div>
             </motion.div>

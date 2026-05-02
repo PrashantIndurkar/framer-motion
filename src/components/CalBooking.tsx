@@ -51,7 +51,7 @@ export function CalBooking() {
       config: { 
         layout: "month_view",
         theme: "dark",
-        hideEventTypeDetails: false,
+        hideEventTypeDetails: true,
         useSlotsViewOnSmallScreen: true,
       },
     });
@@ -67,8 +67,8 @@ export function CalBooking() {
   }, [])
 
   return (
-    <div className="w-full h-[700px] overflow-hidden rounded-3xl border border-neutral-800 bg-neutral-900 shadow-2xl">
-      <div id="cal-booking-embed" className="w-full h-full" />
+    <div className="w-full h-[450px] overflow-hidden rounded-3xl border border-neutral-800 bg-neutral-900 shadow-2xl relative">
+      <div id="cal-booking-embed" className="w-full h-full scale-[0.85] origin-top" />
     </div>
   )
 }

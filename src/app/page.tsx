@@ -116,14 +116,18 @@ export default function Home() {
       {/* Pricing Section */}
       <Pricing />
 
-      {/* FAQ Section */}
-      <FAQSection />
-
-      {/* Blog Section */}
+       {/* Blog Section */}
       <BlogSection />
+
 
       {/* Blog Grid Section */}
       <BlogGridSection />
+
+      {/* FAQ Section */}
+      <FAQSection />
+
+     
+
 
       {/* Booking Hero Section (Footer) */}
       <BookingHero />

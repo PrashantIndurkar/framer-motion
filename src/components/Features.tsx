@@ -104,17 +104,19 @@ export const Features = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
-              className="bg-white p-8 rounded-4xl border border-black/5 shadow-sm transition-all duration-300"
+              className="bg-white p-2 rounded-[32px] border border-black/5 shadow-md transition-all duration-300 h-full group"
             >
-              <div className="mb-8">
-                <feature.icon className="w-8 h-8 text-black fill-current" />
+              <div className="bg-[#F7F7F7] p-8 rounded-[24px] h-full">
+                <div className="mb-8">
+                  <feature.icon className="w-8 h-8 text-black fill-current" />
+                </div>
+                <Text as="h3" variant="outfit" className="text-xl font-bold mb-2 text-black">
+                  {feature.title}
+                </Text>
+                <Text className="text-black/40 font-medium">
+                  {feature.description}
+                </Text>
               </div>
-              <Text as="h3" variant="outfit" className="text-xl font-bold mb-2 text-black">
-                {feature.title}
-              </Text>
-              <Text className="text-black/40 font-medium">
-                {feature.description}
-              </Text>
             </motion.div>
           ))}
         </div>

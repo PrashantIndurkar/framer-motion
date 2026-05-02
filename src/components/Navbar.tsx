@@ -72,7 +72,7 @@ export function Navbar() {
             <span className="text-3xl font-serif font-semibold italic tracking-tight" style={{ fontFamily: "var(--font-source-serif)" }}>
               whenevr
             </span>
-            <sup className="text-[10px] font-sans -top-4 align-top leading-none font-bold opacity-40">®</sup>
+            <sup className="text-[10px] font-sans -top-4 align-top leading-none font-bold opacity-80">®</sup>
           </Link>
 
           <div className="flex items-center gap-4">

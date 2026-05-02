@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react"
+import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
@@ -14,7 +15,7 @@ const GridTagBadge = ({ children, className }: GridTagBadgeProps) => {
   return (
     <span
       className={cn(
-        "text-[10px] uppercase tracking-wider font-bold bg-white/80 backdrop-blur-md px-3 py-1 rounded-full shadow-sm text-neutral-900 border border-black/5",
+        "text-sm font-semibold bg-white backdrop-blur-md px-3 py-1 rounded-full shadow-sm text-black border border-white/10 leading-[21px]",
         className
       )}
     >
@@ -24,6 +25,7 @@ const GridTagBadge = ({ children, className }: GridTagBadgeProps) => {
 }
 
 interface GridBlogCardProps {
+  slug: string
   title: string
   description: string
   image: string
@@ -32,6 +34,7 @@ interface GridBlogCardProps {
 }
 
 const GridBlogCard = ({
+  slug,
   title,
   description,
   image,
@@ -39,63 +42,71 @@ const GridBlogCard = ({
   className,
 }: GridBlogCardProps) => {
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.3 }}
-      className={cn(
-        "group flex flex-col bg-white rounded-3xl overflow-hidden p-2 w-full md:w-[389px] h-[458px] border border-neutral-200 shadow-md transition-all duration-300",
-        className
-      )}
-    >
-      {/* Image Container - Strictly constrained height, handles internal hover */}
-      <div className="relative w-full h-[281px] shrink-0 rounded-2xl overflow-hidden">
-        <motion.div 
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="relative w-full h-full"
-        >
-          <Image
-            src={image}
-            alt={title}
-            fill
-            className="object-cover brightness-95 contrast-105"
-          />
-        </motion.div>
-        <div className="absolute top-3 right-3 z-10">
-          <GridTagBadge>{tag}</GridTagBadge>
+    <Link href={`/blog/${slug}`} className="block w-full md:w-[389px]">
+      <motion.article
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.3 }}
+        className={cn(
+          "group flex flex-col bg-white rounded-3xl overflow-hidden p-2 w-full h-[458px] border border-neutral-200 shadow-md transition-all duration-300 hover:shadow-lg hover:border-neutral-300",
+          className
+        )}
+      >
+        {/* Image Container - Strictly constrained height, handles internal hover */}
+        <div className="relative w-full h-[281px] shrink-0 rounded-t-2xl rounded-b-none overflow-hidden bg-neutral-100">
+          <motion.div 
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="relative w-full h-full"
+          >
+            <Image
+              src={image}
+              alt={title}
+              fill
+              className="object-cover brightness-95 contrast-105"
+            />
+          </motion.div>
+          {/* Fading effect at the bottom to blend with white card background */}
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent to-60% pointer-events-none" />
+          
+          <div className="absolute top-3 right-3 z-10">
+            <GridTagBadge>{tag}</GridTagBadge>
+          </div>
         </div>
-      </div>
 
-      {/* Content */}
-      <div className="flex flex-col gap-2 px-4 py-5 flex-grow">
-        <h3 className="text-xl font-semibold text-neutral-900 leading-tight font-outfit tracking-tight group-hover:text-brand-blue transition-colors duration-300">
-          {title}
-        </h3>
-        <p className="text-sm text-neutral-600 leading-relaxed font-sans line-clamp-2">
-          {description}
-        </p>
-      </div>
-    </motion.article>
+        {/* Content */}
+        <div className="flex flex-col gap-2 px-4 py-5 flex-grow">
+          <h3 className="text-xl font-semibold text-neutral-900 leading-[1.3] font-outfit tracking-tight transition-colors duration-300">
+            {title}
+          </h3>
+          <p className="text-base font-medium text-neutral-500 leading-relaxed font-sans line-clamp-2">
+            {description}
+          </p>
+        </div>
+      </motion.article>
+    </Link>
   )
 }
 
 export default function BlogGridSection() {
   const blogs = [
     {
+      slug: "hiring-design-team",
       title: "How to Get More Done Without Hiring a Full Design Team",
       description: "Lean teams are using design subscriptions to stay fast without hiring a full in-house team.",
       tag: "Operations",
       image: "/image/imgi_42_ldLzFEXXuK2q3bgbFfV6MlgqbSw.jpg",
     },
     {
+      slug: "design-subscription-workflow",
       title: "What Working With a Design Subscription Actually Looks Like",
       description: "A behind the scenes look at how founders use design subscriptions to move faster.",
       tag: "Workflow",
       image: "/image/imgi_43_XTdwXzaaZ0uFZA76FvHmRgz1z4.jpg",
     },
     {
+      slug: "cost-of-bad-design",
       title: "The Real Cost of Bad Design (It's Not What You Think)",
       description: "Poor design slows down decisions, clutters your message and stalls growth.",
       tag: "Growth",
