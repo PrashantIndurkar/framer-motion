@@ -11,15 +11,18 @@ import { Features } from "@/components/Features";
 import { BookCallPill } from "@/components/BookCallPill";
 import { Testimonials } from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
+import { BookingHero } from "@/components/BookingHero";
+import { FAQSection } from "@/components/FAQSection";
 import BlogSection from "@/components/BlogSection";
 import BlogGridSection from "@/components/BlogGridSection";
+import { HorizontalScrollGallery } from "@/components/HorizontalScrollGallery";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="bg-background overflow-hidden">
+    <main className="bg-background">
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 md:pt-48 md:pb-32 min-h-hero flex flex-col justify-center overflow-hidden">
         {/* Background Abstract Image with Silky-Smooth Gradient Overlays */}
@@ -98,6 +101,9 @@ export default function Home() {
       {/* Client Stats Section */}
       <ClientStats />
 
+      {/* Horizontal Scroll Gallery */}
+      <HorizontalScrollGallery />
+
       {/* Features Section */}
       <Features />
 
@@ -107,11 +113,17 @@ export default function Home() {
       {/* Pricing Section */}
       <Pricing />
 
+      {/* FAQ Section */}
+      <FAQSection />
+
       {/* Blog Section */}
       <BlogSection />
 
       {/* Blog Grid Section */}
       <BlogGridSection />
+
+      {/* Booking Hero Section (Footer) */}
+      <BookingHero />
     </main>
   );
 }

@@ -21,25 +21,26 @@ export function Navbar() {
 
   return (
     <Drawer open={isOpen} onOpenChange={setIsOpen}>
-      <header className="fixed top-0 left-0 right-0 z-[60] py-8 pointer-events-none">
-        <Container className="flex items-center justify-between">
-          <Link href="/" className="flex items-baseline gap-0.5 pointer-events-auto">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-md transition-all duration-300">
+        <Container className="flex items-center justify-between py-6">
+          <Link href="/" className="flex items-baseline gap-0.5 hover:opacity-80 transition-opacity">
             <Text 
               variant="serif" 
-              size="3xl" 
+              size="2xl" 
               weight="semibold" 
               className="italic" 
               as="span"
             >
               whenevr
             </Text>
-            <sup className="text-xs font-sans align-top leading-none">®</sup>
+            <sup className="text-[10px] font-sans align-top leading-none">®</sup>
           </Link>
 
-          <div className="flex items-center pointer-events-auto">
+          <div className="flex items-center">
             <Button 
-              variant="outline" 
-              className="rounded-full px-5 h-10 border-black/10 bg-white/80 backdrop-blur-md transition-all flex items-center gap-2 text-sm font-medium"
+              variant="white"
+              size="sm"
+              className="rounded-full px-5 flex items-center gap-2"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? "Close" : "Menu"}
