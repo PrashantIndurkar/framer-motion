@@ -48,7 +48,7 @@ export default function Home() {
           <div className="max-w-4xl ">
             {/* Marquee Section */}
             <div className="mb-10 max-w-xl">
-              {/* <MarqueeChips className="w-full -ml-2" /> */}
+              <MarqueeChips className="w-full -ml-2" />
             </div>
 
             {/* Headline */}
