@@ -27,12 +27,12 @@ const config: Config = {
         "4xl": "32px",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "sans-serif"],
+        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
         outfit: ["var(--font-outfit)", "sans-serif"],
-        serif: ["var(--font-source-serif)", "Source Serif 4", "serif"],
+        serif: ["var(--font-source-serif)", "ui-serif", "Georgia", "serif"],
       },
       fontSize: {
-        "hero": "clamp(4rem, 10vw, 8.75rem)",
+        "display-hero": ["5.125rem", { lineHeight: "5.25rem", letterSpacing: "-0.05em" }],
       },
       lineHeight: {
         "tightest": "0.9",

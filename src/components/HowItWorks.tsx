@@ -37,6 +37,7 @@ const HowItWorks = () => {
                   initial={{ opacity: 0, x: -10 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   className="text-[24px] lg:text-[26px] font-serif italic font-bold tracking-[-0.05em] leading-none"
+                  style={{ fontFamily: "var(--font-source-serif)" }}
                 >
                   whenevr<sup className="text-[10px] align-top ml-0.5 font-sans not-italic">®</sup>
                 </motion.span>

@@ -48,17 +48,20 @@ export default function Home() {
           <div className="max-w-4xl ">
             {/* Marquee Section */}
             <div className="mb-10 max-w-xl">
-              <MarqueeChips className="w-full -ml-2" />
+              {/* <MarqueeChips className="w-full -ml-2" /> */}
             </div>
 
             {/* Headline */}
             <div className="mb-10">
               <Text 
                 as="h1" 
-                className="text-7xl md:text-8xl lg:text-hero font-bold tracking-tighter text-black leading-tightest"
+                size="hero"
+                weight="semibold"
+                className="tracking-tighter text-black"
               >
                 World-class <br />
-                design <Text as="span" variant="serif" weight="semibold" className="italic font-serif">whenevr</Text><sup className="text-2xl md:text-3xl lg:text-4xl align-top">®</sup> <br />
+                design 
+                <span className="italic font-semibold" style={{ fontFamily: "var(--font-source-serif)" }}> whenevr</span><sup className="text-xl md:text-2xl lg:text-3xl align-top ml-1">®</sup> <br />
                 you need it.
               </Text>
             </div>
@@ -67,7 +70,7 @@ export default function Home() {
             <div className="max-w-xl">
               <Text 
                 size="xl" 
-                className="md:text-2xl leading-relaxed text-black/40 font-medium tracking-tight"
+                className="leading-relaxed text-black/40 font-medium tracking-tight text-xl"
               >
                 A monthly design subscription for startups, creators, 
                 and teams who need work done without the wait.

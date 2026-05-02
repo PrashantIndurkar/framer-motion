@@ -31,7 +31,7 @@ export function MarqueeChips({
           <Badge
             key={index}
             variant="outline"
-            className="rounded-full bg-white px-5 py-2.5 text-base font-semibold text-neutral-800 border-neutral-200 transition-colors cursor-default select-none hover:bg-neutral-50"
+            className="rounded-full bg-white px-5 py-0.5 text-lg font-semibold text-neutral-800 border-neutral-200 transition-colors cursor-default select-none hover:bg-neutral-50"
           >
             {item}
           </Badge>
@@ -39,8 +39,8 @@ export function MarqueeChips({
       </Marquee>
       
       {/* Edge Gradient Fades - Standard Tailwind widths */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-background via-background/80 to-transparent z-10"></div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-background via-background/80 to-transparent z-10"></div>
+      <div className="pointer-events-none absolute inset-y-0 -left-10 w-20 bg-gradient-to-r from-background via-background/80 to-transparent z-10"></div>
+      <div className="pointer-events-none absolute inset-y-0 -right-20 w-20 bg-gradient-to-l from-background via-background/80 to-transparent z-10"></div>
     </div>
   );
 }

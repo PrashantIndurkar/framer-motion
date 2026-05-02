@@ -27,7 +27,7 @@ export function AnimatedButton({
       whileHover="hover"
       onClick={onClick}
       className={cn(
-        "relative h-[56px] px-8 overflow-hidden rounded-full font-bold text-[15px] transition-all duration-300 flex items-center justify-center",
+        "relative h-14 px-8 overflow-hidden rounded-full font-bold transition-all duration-300 flex items-center justify-center",
         isWhite ? "bg-white text-black" : "bg-black text-white",
         className
       )}

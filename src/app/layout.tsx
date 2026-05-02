@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Source_Serif_4, Inter, Outfit } from "next/font/google";
 import { Container } from "@/components/ui/container";
+import { IntroLoaderWrapper } from "@/components/IntroLoaderWrapper";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -34,8 +35,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${sourceSerif.variable} ${outfit.variable} scroll-smooth`}>
       <body className="antialiased font-sans">
-        <Navbar />
-        {children}
+        <IntroLoaderWrapper>
+          <Navbar />
+          {children}
+        </IntroLoaderWrapper>
       </body>
     </html>
   );

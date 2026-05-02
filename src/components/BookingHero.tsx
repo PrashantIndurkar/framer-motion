@@ -7,7 +7,7 @@ import { AnimatedButton } from "@/components/ui/animated-button"
 
 export const BookingHero = () => {
   return (
-    <section className="min-h-screen bg-black text-white flex flex-col justify-center overflow-hidden">
+    <section data-theme="dark" className="min-h-screen bg-black text-white flex flex-col justify-center overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 py-16 w-full">
         {/* Logo and Nav area */}
         <motion.div 
@@ -17,7 +17,7 @@ export const BookingHero = () => {
           className="mb-12 md:mb-20"
         >
           <div className="flex items-center gap-2 mb-8">
-            <span className="text-3xl font-serif italic font-bold tracking-tight">whenevr®</span>
+            <span className="text-3xl italic font-bold tracking-tight" style={{ fontFamily: "var(--font-source-serif)" }}>whenevr®</span>
           </div>
           <p className="text-lg italic font-serif text-neutral-300">
             Simplifying your creative workflow.

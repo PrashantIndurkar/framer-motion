@@ -20,6 +20,7 @@ const textVariants = cva("", {
       "3xl": "text-3xl",
       "4xl": "text-4xl",
       "8xl": "text-8xl lg:text-[120px]",
+      "hero": "text-5xl md:text-7xl lg:text-display-hero",
     },
     weight: {
       inherit: "",

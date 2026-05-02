@@ -76,14 +76,14 @@ export function DrawerContent({
   return (
     <AnimatePresence>
       {open && (
-        <>
+        <div className="fixed inset-0 z-50">
           {/* Overlay */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setOpen(false)}
-            className="fixed inset-0 bg-black/40 z-40 backdrop-blur-[2px]"
+            className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"
           />
           {/* Content - Sliding from Top */}
           <motion.div
@@ -92,13 +92,13 @@ export function DrawerContent({
             exit={{ y: "-100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
             className={cn(
-              "fixed top-0 left-0 right-0 bg-background z-50 p-6 shadow-2xl",
+              "absolute top-0 left-0 right-0 bg-background shadow-2xl overflow-y-auto",
               className
             )}
           >
             {children}
           </motion.div>
-        </>
+        </div>
       )}
     </AnimatePresence>
   )
