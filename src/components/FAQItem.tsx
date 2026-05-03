@@ -17,21 +17,21 @@ export function FAQItem({ question, answer, defaultOpen = false }: FAQItemProps)
   return (
     <div
       className={cn(
-        "border rounded-xl p-5 transition-all duration-300 cursor-pointer",
+        "rounded-2xl p-4 transition-all duration-300 cursor-pointer",
         isOpen 
-          ? "border-neutral-200 bg-neutral-100 shadow-sm" 
-          : "border-neutral-200 bg-white hover:bg-neutral-50"
+          ? "bg-neutral-100/80 shadow-sm" 
+          : "bg-[#F8F8F8] hover:bg-neutral-100/50"
       )}
       onClick={() => setIsOpen(!isOpen)}
     >
       <div className="flex justify-between items-center gap-4">
-        <h3 className="text-base font-medium text-neutral-900 leading-tight">
+        <h3 className="text-[14px] font-semibold text-neutral-900 leading-tight">
           {question}
         </h3>
         <div 
           className={cn(
-            "w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-full transition-colors duration-300",
-            isOpen ? "bg-neutral-300/50" : "bg-neutral-100"
+            "w-7 h-7 flex-shrink-0 flex items-center justify-center rounded-full transition-colors duration-300",
+            isOpen ? "bg-white" : "bg-transparent"
           )}
         >
           <AnimatePresence mode="wait">
@@ -43,7 +43,7 @@ export function FAQItem({ question, answer, defaultOpen = false }: FAQItemProps)
                 exit={{ rotate: 90, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <X className="w-4 h-4 text-neutral-600" />
+                <X className="w-3.5 h-3.5 text-neutral-600" />
               </motion.div>
             ) : (
               <motion.div
@@ -53,7 +53,7 @@ export function FAQItem({ question, answer, defaultOpen = false }: FAQItemProps)
                 exit={{ rotate: -90, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <Plus className="w-4 h-4 text-neutral-600" />
+                <Plus className="w-3.5 h-3.5 text-neutral-600" />
               </motion.div>
             )}
           </AnimatePresence>
@@ -64,12 +64,12 @@ export function FAQItem({ question, answer, defaultOpen = false }: FAQItemProps)
         {isOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0, marginTop: 0 }}
-            animate={{ height: "auto", opacity: 1, marginTop: 12 }}
+            animate={{ height: "auto", opacity: 1, marginTop: 8 }}
             exit={{ height: 0, opacity: 0, marginTop: 0 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <p className="text-sm text-neutral-600 leading-relaxed max-w-[95%]">
+            <p className="text-[13px] text-neutral-500 leading-relaxed max-w-[95%]">
               {answer}
             </p>
           </motion.div>

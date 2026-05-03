@@ -13,8 +13,7 @@ const faqs = [
   },
   {
     question: "What kind of design work is included?",
-    answer: "Most requests related to web, product, and marketing design are covered. That includes landing pages, UI design, Framer builds, brand assets, and more.",
-    defaultOpen: true
+    answer: "Most requests related to web, product, and marketing design are covered. That includes landing pages, UI design, Framer builds, brand assets, and more."
   },
   {
     question: "How fast will I receive my designs?",
@@ -32,48 +31,46 @@ const faqs = [
 
 export function FAQSection() {
   return (
-    <section className="bg-neutral-100 py-20">
-      <div className="max-w-4xl mx-auto px-6">
-        <div className="bg-white rounded-4xl shadow-lg p-8 md:p-12">
-          {/* Top Badge */}
-          <Badge variant="faq" className="mb-6">
+    <section className="bg-neutral-100 py-24 px-6 flex justify-center">
+      <div className="bg-white rounded-[40px] border border-black/5 p-12 w-full max-w-[588px] h-fit flex flex-col shadow-sm">
+        {/* Header Section */}
+        <div className="mb-10">
+          <Badge variant="faq" className="mb-8 font-semibold text-base bg-neutral-100 text-black   border-none rounded-full">
             FAQs
           </Badge>
+          
+          <h2 className="text-[32px] md:text-[40px] font-semibold tracking-tight text-neutral-900 leading-[1.1] mb-8">
+            Frequently <br />
+            Asked <span className="italic font-serif" style={{ fontFamily: "var(--font-source-serif)" }}>Questions</span>
+          </h2>
 
-          {/* Header Section */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
-            <div className="space-y-6">
-              <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-neutral-900 leading-[1.1]">
-                Frequently <br className="hidden md:block" />
-                Asked <span className="italic font-serif">Questions</span>
-              </h2>
-              
-              <div className="space-y-1">
-                <p className="text-sm text-neutral-500">Email</p>
-                <p className="text-base font-medium text-neutral-900">
-                  hello@whenevr.com
-                </p>
-              </div>
+          <div className="flex justify-between items-end">
+            <div>
+              <p className="text-[10px] text-neutral-400 font-medium uppercase tracking-[0.2em] mb-1">Email</p>
+              <p className="text-base font-semibold text-neutral-900">
+                hello@whenevr.com
+              </p>
             </div>
-
+            
             <AnimatedButton 
-              className="w-full md:w-auto"
+              className="text-lg font-semibold tracking-tight flex-shrink-0 px-[30px] py-[17px]"
+              hoverText="Contact"
             >
               Get in touch
             </AnimatedButton>
           </div>
+        </div>
 
-          {/* Accordion List */}
-          <div className="mt-12 flex flex-col gap-4">
-            {faqs.map((faq, index) => (
-              <FAQItem
-                key={index}
-                question={faq.question}
-                answer={faq.answer}
-                defaultOpen={faq.defaultOpen}
-              />
-            ))}
-          </div>
+        {/* FAQ List Section */}
+        <div className="flex-1 overflow-y-auto pr-2 -mr-2 scrollbar-hide space-y-2">
+          {faqs.map((faq, index) => (
+            <FAQItem
+              key={index}
+              question={faq.question}
+              answer={faq.answer}
+              defaultOpen={faq.defaultOpen}
+            />
+          ))}
         </div>
       </div>
     </section>
