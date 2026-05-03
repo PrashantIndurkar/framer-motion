@@ -68,7 +68,7 @@ export function CalBooking() {
 
   return (
     <div className="w-full h-[450px] overflow-hidden rounded-3xl border border-neutral-800 bg-neutral-900 shadow-2xl relative">
-      <div id="cal-booking-embed" className="w-full h-full scale-[0.85] origin-top" />
+      <div id="cal-booking-embed" className="w-full h-full lg:scale-[0.85] origin-top" />
     </div>
   )
 }
