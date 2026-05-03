@@ -32,45 +32,49 @@ const faqs = [
 export function FAQSection() {
   return (
     <section className="bg-neutral-100 py-24 px-6 flex justify-center">
-      <div className="bg-white rounded-[40px] border border-black/5 p-12 w-full max-w-[588px] h-fit flex flex-col shadow-sm">
-        {/* Header Section */}
-        <div className="mb-10">
-          <Badge variant="faq" className="mb-8 font-semibold text-base bg-neutral-100 text-black   border-none rounded-full">
-            FAQs
-          </Badge>
-          
-          <h2 className="text-[32px] md:text-[40px] font-semibold tracking-tight text-neutral-900 leading-[1.1] mb-8">
-            Frequently <br />
-            Asked <span className="italic font-serif" style={{ fontFamily: "var(--font-source-serif)" }}>Questions</span>
-          </h2>
-
-          <div className="flex justify-between items-end">
-            <div>
-              <p className="text-[10px] text-neutral-400 font-medium uppercase tracking-[0.2em] mb-1">Email</p>
-              <p className="text-base font-semibold text-neutral-900">
-                hello@whenevr.com
-              </p>
-            </div>
+      {/* Outer White Frame */}
+      <div className="bg-white rounded-[32px] border border-black/5 p-2 w-full max-w-[588px] h-[716px] flex flex-col shadow-sm">
+        {/* Inner Content Card */}
+        <div className="bg-[#F7F7F7] rounded-[24px] p-10 flex flex-col h-full overflow-hidden">
+          {/* Header Section */}
+          <div className="mb-10">
+            <Badge variant="faq" className="mb-8 font-semibold text-[12px] tracking-wider bg-white text-neutral-500 uppercase py-1.5 px-4 border border-black/5 rounded-full shadow-sm">
+              FAQs
+            </Badge>
             
-            <AnimatedButton 
-              className="text-lg font-semibold tracking-tight flex-shrink-0 px-[30px] py-[17px]"
-              hoverText="Contact"
-            >
-              Get in touch
-            </AnimatedButton>
-          </div>
-        </div>
+            <h2 className="text-[32px] md:text-[40px] font-semibold tracking-tight text-neutral-900 leading-[1.1] mb-8">
+              Frequently <br />
+              Asked <span className="italic font-serif" style={{ fontFamily: "var(--font-source-serif)" }}>Questions</span>
+            </h2>
 
-        {/* FAQ List Section */}
-        <div className="flex-1 overflow-y-auto pr-2 -mr-2 scrollbar-hide space-y-2">
-          {faqs.map((faq, index) => (
-            <FAQItem
-              key={index}
-              question={faq.question}
-              answer={faq.answer}
-              defaultOpen={faq.defaultOpen}
-            />
-          ))}
+            <div className="flex justify-between items-end">
+              <div>
+                <p className="text-[10px] text-neutral-400 font-medium uppercase tracking-[0.2em] mb-1">Email</p>
+                <p className="text-base font-semibold text-neutral-900">
+                  hello@whenevr.com
+                </p>
+              </div>
+              
+              <AnimatedButton 
+                className="text-lg font-semibold tracking-tight flex-shrink-0 px-[30px] py-[17px]"
+                hoverText="Contact"
+              >
+                Get in touch
+              </AnimatedButton>
+            </div>
+          </div>
+
+          {/* FAQ List Section */}
+          <div className="flex-1 overflow-y-auto pr-2 -mr-2 scrollbar-hide space-y-2">
+            {faqs.map((faq, index) => (
+              <FAQItem
+                key={index}
+                question={faq.question}
+                answer={faq.answer}
+                defaultOpen={faq.defaultOpen}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
