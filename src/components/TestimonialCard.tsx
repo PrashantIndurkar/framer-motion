@@ -11,6 +11,7 @@ interface TestimonialCardProps {
   content: string;
   avatar: string;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 export const TestimonialCard = ({
@@ -19,13 +20,15 @@ export const TestimonialCard = ({
   content,
   avatar,
   className,
+  style,
 }: TestimonialCardProps) => {
   return (
     <div
       className={cn(
-        "bg-white p-2 rounded-2xl w-[365px]  shadow-md border border-black/5 shrink-0 group transition-all duration-300",
+        "bg-white p-2 rounded-2xl w-[280px] xs:w-[320px] sm:w-[365px] shadow-md border border-black/5 shrink-0 group transition-all duration-300",
         className
       )}
+      style={style}
     >
       <div className="bg-[#F7F7F7] p-4 rounded-2xl h-full w-full relative">
         <div className="absolute top-6 right-6">

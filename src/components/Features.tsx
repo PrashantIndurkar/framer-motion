@@ -77,7 +77,7 @@ export const Features = () => {
         </div>
 
         {/* Headline */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <motion.div
             initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -96,7 +96,7 @@ export const Features = () => {
         </div>
 
         {/* Feature Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-16 max-w-5xl mx-auto">
           {features.map((feature, index) => (
             <motion.div
               key={index}
@@ -105,13 +105,13 @@ export const Features = () => {
               viewport={{ once: true }}
               transition={{ duration: 1.1, delay: 0.2 + index * 0.1, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -5 }}
-              className="bg-neutral-50 p-1.5 rounded-2xl border border-black/5 shadow-md h-full group"
+              className="bg-white p-2 rounded-3xl border border-black/5 shadow-sm h-full group w-full"
             >
-              <div className="bg-[#F7F7F7] rounded-2xl h-full pl-5">
-                <div className="pt-4">
+              <div className="bg-neutral-50 rounded-2xl h-full p-5">
+                <div className="pt-2">
                   <feature.icon className="w-10 h-10 text-black fill-current" />
                 </div>
-                <Text as="h3" variant="outfit" className="pt-6  text-lg font-semibold mb-1.5 text-black">
+                <Text as="h3" variant="outfit" className="pt-6 text-lg font-semibold mb-1.5 text-black">
                   {feature.title}
                 </Text>
                 <Text className="text-black/40 font-medium pb-4">

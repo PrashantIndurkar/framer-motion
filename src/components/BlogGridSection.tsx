@@ -51,12 +51,12 @@ const GridBlogCard = ({
         viewport={{ once: true }}
         transition={{ duration: 1.1, delay: 0.2 + index * 0.1, ease: [0.16, 1, 0.3, 1] }}
         className={cn(
-          "group flex flex-col bg-white rounded-3xl overflow-hidden p-2 w-full h-[458px] border border-neutral-200 shadow-md transition-all duration-300 hover:shadow-lg hover:border-neutral-300",
+          "group flex flex-col bg-white rounded-3xl overflow-hidden p-2 w-full h-[458px] shadow-md transition-all duration-300 hover:shadow-lg",
           className
         )}
       >
         {/* Image Container - Strictly constrained height, handles internal hover */}
-        <div className="relative w-full h-[281px] shrink-0 rounded-t-2xl rounded-b-none overflow-hidden bg-neutral-100">
+        <div className="relative w-full h-[281px] shrink-0 rounded-t-2xl rounded-b-none overflow-hidden bg-neutral-100 ">
           <motion.div 
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
@@ -66,7 +66,7 @@ const GridBlogCard = ({
               src={image}
               alt={title}
               fill
-              className="object-cover brightness-95 contrast-105"
+              className="object-cover brightness-95 contrast-105 borde"
             />
           </motion.div>
           {/* Fading effect at the bottom to blend with white card background */}
@@ -98,21 +98,21 @@ export default function BlogGridSection() {
       title: "How to Get More Done Without Hiring a Full Design Team",
       description: "Lean teams are using design subscriptions to stay fast without hiring a full in-house team.",
       tag: "Operations",
-      image: "/image/imgi_42_ldLzFEXXuK2q3bgbFfV6MlgqbSw.jpg",
+      image: "/image/imgi_88_A2Jpv443KkrqGb6fQMCtPKhklI.png",
     },
     {
       slug: "design-subscription-workflow",
       title: "What Working With a Design Subscription Actually Looks Like",
       description: "A behind the scenes look at how founders use design subscriptions to move faster.",
       tag: "Workflow",
-      image: "/image/imgi_43_XTdwXzaaZ0uFZA76FvHmRgz1z4.jpg",
+      image: "/image/imgi_89_mMGyaOXjCOlqMFzBYOOC6xcyeR0.png",
     },
     {
       slug: "cost-of-bad-design",
       title: "The Real Cost of Bad Design (It's Not What You Think)",
       description: "Poor design slows down decisions, clutters your message and stalls growth.",
       tag: "Growth",
-      image: "/image/imgi_44_DcNJgQIOkkv7HpGnt8XS2UJ0sGE.png",
+      image: "/image/imgi_90_XqWtWOfsLoqWpqyf7St5rHsB2p4.png",
     },
   ]
 

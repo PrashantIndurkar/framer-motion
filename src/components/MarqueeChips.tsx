@@ -13,12 +13,19 @@ const DEFAULT_ITEMS = [
   "Product Design",
 ];
 
+interface MarqueeChipsProps {
+  items?: string[];
+  duration?: string;
+  pauseOnHover?: boolean;
+  className?: string;
+}
+
 export function MarqueeChips({
   items = DEFAULT_ITEMS,
   duration = "60s",
   pauseOnHover = true,
   className,
-}) {
+}: MarqueeChipsProps) {
   return (
     <div className={cn("relative flex w-full flex-col overflow-hidden", className)}>
       <Marquee 

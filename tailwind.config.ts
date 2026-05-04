@@ -39,6 +39,7 @@ const config: Config = {
       },
       minHeight: {
         "hero": "85vh",
+        "hero-compact": "70vh",
       },
       boxShadow: {
         "available": "0 0 8px rgba(16,185,129,0.5)",

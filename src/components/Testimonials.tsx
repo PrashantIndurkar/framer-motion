@@ -53,9 +53,40 @@ export const Testimonials = () => {
   const [isAnimating, setIsAnimating] = useState(true);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const cardWidth = 365;
+  const [visibleCards, setVisibleCards] = useState(3);
+  const [cardWidth, setCardWidth] = useState(365);
   const gap = 16;
-  const stepWidth = cardWidth + gap;
+  const [stepWidth, setStepWidth] = useState(cardWidth + gap);
+
+  useEffect(() => {
+    const updateDimensions = () => {
+      const width = window.innerWidth;
+      let newVisibleCards = 3;
+      let newCardWidth = 365;
+
+      if (width < 640) {
+        newVisibleCards = 1;
+        newCardWidth = 280;
+      } else if (width < 768) {
+        newVisibleCards = 1;
+        newCardWidth = 320;
+      } else if (width < 1200) {
+        newVisibleCards = 2;
+        newCardWidth = 365;
+      } else {
+        newVisibleCards = 3;
+        newCardWidth = 365;
+      }
+
+      setVisibleCards(newVisibleCards);
+      setCardWidth(newCardWidth);
+      setStepWidth(newCardWidth + gap);
+    };
+
+    updateDimensions();
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
 
   const handleNext = useCallback(() => {
     if (!isAnimating) return;
@@ -103,7 +134,7 @@ export const Testimonials = () => {
   }, [handleNext, isPaused, isAnimating]);
 
   return (
-    <section className="flex flex-col items-center py-32 bg-[#f0f0f0] overflow-hidden">
+    <section className="flex flex-col items-center py- bg-[#f0f0f0] overflow-hidden">
       {/* Label */}
     <div className="flex justify-center">
              <motion.div 
@@ -125,7 +156,7 @@ Testimonials
         whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         viewport={{ once: true }}
         transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-        className="text-[48px] md:text-[56px] font-semibold text-center leading-[1.05] tracking-tight mb-12 max-w-3xl font-sans"
+        className="text-[40px] md:text-[56px] font-semibold text-center leading-[1.05] tracking-tight mb-12 max-w-3xl font-sans"
       >
         Turns out, people like <br />
         getting things <span className="italic font-serif font-medium">done.</span>
@@ -141,7 +172,7 @@ Testimonials
         <div 
           className="relative overflow-hidden py-10 -my-10"
           style={{ 
-            width: `${cardWidth * 3 + gap * 2}px`,
+            width: `${cardWidth * visibleCards + gap * (visibleCards - 1)}px`,
           }}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
@@ -160,6 +191,7 @@ Testimonials
                 key={`${item.name}-${i}`}
                 {...item}
                 className="shrink-0"
+                style={{ width: `${cardWidth}px` }}
               />
             ))}
           </motion.div>

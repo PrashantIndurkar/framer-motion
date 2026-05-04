@@ -149,9 +149,9 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section className="relative z-10 pt-4 pb-32 bg-[#f0f0f0]">
+    <section className="relative z-10 pt-4 pb-16 bg-[#f0f0f0]">
       <Container>
-        <div className="flex flex-col items-center text-center mb-24">
+        <div className="flex flex-col items-center text-center mb-12">
           <motion.div 
             initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -173,7 +173,7 @@ const HowItWorks = () => {
             <Text 
               as="h2" 
               variant="outfit"
-              className="text-5xl md:text-6xl lg:text-[56px] font-semibold tracking-tight max-w-5xl leading-[1.02] text-black"
+              className="text-[40px] md:text-6xl lg:text-[56px] font-semibold tracking-tight max-w-5xl leading-[1.02] text-black"
             >
               Welcome to the <Text as="span" variant="serif" className="italic font-serif" style={{ fontFamily: "var(--font-source-serif)" }}>better</Text> way <br className="hidden md:block" />
               of getting design done.
@@ -181,7 +181,7 @@ const HowItWorks = () => {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-stretch md:justify-items-center w-full max-w-[1200px] mx-auto">
           {cards.map((card, index) => (
             <motion.div
               key={card.title}
@@ -189,7 +189,12 @@ const HowItWorks = () => {
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true }}
               transition={{ duration: 1.1, delay: 0.2 + index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col w-full max-w-[384px]"
+              className={cn(
+                "flex flex-col w-full mx-auto",
+                index === 2 
+                  ? "max-w-full md:max-w-[792px] lg:max-w-[384px] md:col-span-2 lg:col-span-1" 
+                  : "max-w-full md:max-w-[384px]"
+              )}
             >
               <div className="bg-white p-2 rounded-2xl h-[450px] shadow-md border border-black/5 flex flex-col group hover:shadow-xl transition-all duration-700 relative hover:z-30">
                 <div className="flex flex-col h-full w-full bg-[#F7F7F7] rounded-2xl overflow-visible">

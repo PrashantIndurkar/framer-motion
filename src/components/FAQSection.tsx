@@ -32,7 +32,7 @@ const faqs = [
 
 export function FAQSection() {
   return (
-    <section className="bg-[#f0f0f0] py-24 px-6 flex justify-center">
+    <section className="bg-[#f0f0f0] py-20 px-6 flex justify-center">
       {/* Outer White Frame */}
       <motion.div 
         initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
@@ -44,8 +44,8 @@ export function FAQSection() {
         {/* Inner Content Card */}
         <div className="bg-white rounded-[24px] p-10 flex flex-col h-full overflow-hidden">
           {/* Header Section */}
-          <div className="mb-10">
-            <Badge variant="faq" className="mb-8 font-semibold text-[12px] tracking-wider bg-white text-neutral-500 uppercase py-1.5 px-4 border border-black/5 rounded-full shadow-sm">
+          <div className="mb-8">
+            <Badge variant="faq" className="mb-6 font-semibold text-base tracking-wider bg-neutral-100 text-black  rounded-full shadow-sm">
               FAQs
             </Badge>
             

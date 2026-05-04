@@ -82,7 +82,7 @@ export function Navbar() {
             )}
           >
             <span className="text-3xl font-serif font-semibold italic tracking-tight" style={{ fontFamily: "var(--font-source-serif)" }}>
-              Whenevr
+              whenevr
             </span>
             <sup className="text-sm font-sans -top-3 align-top leading-none font-bold opacity-80 ml-0.5" >®</sup>
           </Link>
@@ -137,7 +137,7 @@ export function Navbar() {
                 className="mt-8"
               >
                 <Text className="text-[14px] leading-[21px] font-sans font-semibold text-black">
-                  © 2025 Whenevr®
+                  © 2025 whenevr®
                 </Text>
               </motion.div>
             </div>

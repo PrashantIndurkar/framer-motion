@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform, useSpring } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
 import { useSmoothScroll } from "./SmoothScroll"
+import Marquee from "@/components/ui/marquee"
 
 const items = [
   { 
@@ -21,8 +22,18 @@ const items = [
 
 export function HorizontalScrollGallery() {
   const targetRef = useRef<HTMLDivElement>(null)
+  const [isDesktop, setIsDesktop] = useState(true)
+
+  useEffect(() => {
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024)
+    }
+    checkDesktop()
+    window.addEventListener('resize', checkDesktop)
+    return () => window.removeEventListener('resize', checkDesktop)
+  }, [])
   
-  // Track scroll progress of the entire section
+  // Track scroll progress of the entire section (only for desktop)
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ["start start", "end end"]
@@ -39,25 +50,52 @@ export function HorizontalScrollGallery() {
   const [sectionTop, setSectionTop] = useState(0)
 
   useEffect(() => {
-    if (targetRef.current) {
-      // We need the distance from the top of the content container
-      // In a SmoothScroll wrapper, we can use offsetTop
+    if (targetRef.current && isDesktop) {
       setSectionTop(targetRef.current.offsetTop)
     }
-  }, [])
+  }, [isDesktop])
 
   // Map progress (0-1) to horizontal translation
   const x = useTransform(xProgress, [0, 1], ["0vw", "-140vw"])
 
   // COMPENSATE for SmoothScroll wrapper translation to simulate "sticky"
-  // When smoothY > sectionTop, we translate the inner div downwards by (smoothY - sectionTop)
-  // so it stays fixed at the top of the viewport.
   const stickyY = useTransform(smoothY || useSpring(0), (latest) => {
-    if (!latest || latest < sectionTop) return 0
+    if (!isDesktop || !latest || latest < sectionTop) return 0
     const distance = latest - sectionTop
     const maxDistance = (targetRef.current?.offsetHeight || 0) - window.innerHeight
     return Math.min(distance, maxDistance)
   })
+
+  if (!isDesktop) {
+    return (
+      <section className="bg-background-dark py-12 overflow-hidden">
+        <div className="h-[450px] w-full flex items-center">
+          <Marquee 
+            className="py-0" 
+            pauseOnHover={false}
+            repeat={4}
+            duration="60s"
+            gap="1rem"
+          >
+            {items.map((item) => (
+              <div
+                key={`mobile-${item.id}`}
+                className="flex-shrink-0 w-[80vw] h-[450px] relative overflow-hidden bg-neutral-900 border-r border-white/5"
+              >
+                <img
+                  src={item.image}
+                  alt={`Gallery item ${item.id}`}
+                  className="w-full h-full object-cover"
+                  loading="eager"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+              </div>
+            ))}
+          </Marquee>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section 
@@ -65,17 +103,10 @@ export function HorizontalScrollGallery() {
       data-theme="dark"
       className="relative h-[400vh] bg-background-dark z-30"
     >
-      {/* 
-          Manual Sticky container:
-          We use translateY (via stickyY) to keep this div at the top of the viewport
-          while the user scrolls through the h-[400vh] section.
-      */}
       <motion.div 
         style={{ y: stickyY }}
         className="relative h-screen w-full flex items-center overflow-hidden"
       >
-        
-        {/* Horizontal flex container that moves left/right */}
         <motion.div 
           style={{ x }}
           className="flex flex-nowrap will-change-transform"
@@ -91,7 +122,6 @@ export function HorizontalScrollGallery() {
                 className="w-full h-full object-cover"
                 loading="eager"
               />
-              {/* Subtle overlay for depth */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
             </div>
           ))}
@@ -100,3 +130,4 @@ export function HorizontalScrollGallery() {
     </section>
   )
 }
+

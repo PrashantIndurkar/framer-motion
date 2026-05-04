@@ -48,7 +48,7 @@ export const ClientStats = () => {
   return (
     <section 
       ref={sectionRef} 
-      className="relative pt-96 pb-96 md:pt-[400px] md:pb-[400px] overflow-hidden bg-[#f0f0f0] z-20"
+      className="relative pt-50 pb-40 md:pt-60 md:pb-60 lg:pt-[400px] lg:pb-[400px] overflow-hidden bg-[#f0f0f0] z-20"
     >
       {/* Background Arc Gallery */}
       <div className="absolute inset-0 z-20 pointer-events-none overflow-visible">
@@ -58,12 +58,12 @@ export const ClientStats = () => {
           startAngle={195} 
           endAngle={-15} 
           radiusLg={520}
-          radiusMd={420}
-          radiusSm={300}
+          radiusMd={300}
+          radiusSm={180}
           cardSizeLg={110}
-          cardSizeMd={90}
-          cardSizeSm={60}
-          className="absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2"
+          cardSizeMd={70}
+          cardSizeSm={45}
+          className="absolute top-[52%] md:top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2"
         />
       </div>
 
@@ -78,7 +78,7 @@ export const ClientStats = () => {
         >
           <Text 
             as="h2" 
-            className="text-[48px] md:text-[56px] font-semibold tracking-tighter leading-[1.05] text-black font-sans max-w-4xl"
+            className="text-[32px] md:text-[36px] lg:text-[56px] font-semibold tracking-tighter leading-[1.05] text-black font-sans max-w-4xl"
           >
             100+ clients getting <br />
             <Text as="span" variant="serif" className="italic font-serif">better</Text>

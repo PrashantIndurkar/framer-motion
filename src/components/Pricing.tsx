@@ -12,12 +12,10 @@ import { AnimatedButton } from "@/components/ui/animated-button";
 import { cn } from "@/lib/utils";
 
 const marqueeImages = [
-  "/image/imgi_10_UT4fxQBnxf542T5Cf7zZOvBxy0.png",
-  "/image/imgi_11_4UX9uXT3N0WRExPOcc1r8bpVQAk.png",
-  "/image/imgi_12_GSFkssTRojMMfTCPqH1HENDnw.png",
-  "/image/imgi_13_pSEmRq7TZ5niunpklVk0dvh1mDA.png",
-  "/image/imgi_14_WdMlO6P4eyTomKkSRBDtGLAio4.png",
-  "/image/imgi_15_AcrDBNPoA5kazwDFtUC2IeoPoo.png",
+  "/image/imgi_78_UK3ji9XKftVKablDa07xbZ7o.jpg",
+  "/image/imgi_79_gdoBqgMU9ke6K07ShZLmpfUoWc.jpg",
+  "/image/imgi_80_ldLzFEXXuK2q3bgbFfV6MlgqbSw.jpg",
+  "/image/imgi_81_XTdwXzaaZ0uFZA76FvHmRgz1z4.jpg",
 ];
 
 export default function Pricing() {
@@ -27,28 +25,29 @@ export default function Pricing() {
   const activeTasks = isAdditionalActive ? "Two active tasks" : "One active task";
 
   return (
-    <section className="py- bg-[#f0f0f0]">
+    <section id="pricing" className="py-20 bg-[#f0f0f0]">
       <Container>
         <motion.div 
           initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true }}
           transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-          className="bg-white p-2 rounded-[32px] md:rounded-[40px] border border-black/5 shadow-2xl"
+          className="bg-white p-2 rounded-[32px] md:rounded-2xl border border-black/5 shadow-2xl"
         >
-          <div className="overflow-hidden rounded-[24px] md:rounded-[32px] bg-[#0D0D0D] flex flex-col md:flex-row md:h-[620px] w-full">
+          <div className="overflow-hidden rounded-[24px] md:rounded-2xl bg-[#0D0D0D] flex flex-col-reverse lg:flex-row lg:h-[620px] w-full">
         
-        {/* LEFT SECTION: Marquee */}
+        {/* LEFT/BOTTOM SECTION: Marquee */}
         <motion.div 
           initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true }}
           transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full md:w-[40%] relative bg-[#0f0f0f] overflow-hidden min-h-[300px] md:h-full"
+          className="w-full lg:w-[40%] relative bg-[#0f0f0f] overflow-hidden h-[300px] md:h-[400px] lg:h-full rounded-2xl"
         >
-          <Marquee vertical duration="30s" repeat={4} className="h-full">
+          {/* Desktop Marquee (Vertical) */}
+          <Marquee vertical duration="30s" repeat={4} className="h-full hidden lg:flex">
             {marqueeImages.map((src, i) => (
-              <div key={i} className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden group">
+              <div key={i} className="relative aspect-[4/3] w-full overflow-hidden group rounded-2xl">
                 <Image
                   src={src}
                   alt={`Design ${i}`}
@@ -59,45 +58,61 @@ export default function Pricing() {
               </div>
             ))}
           </Marquee>
-          
-          {/* Fade Mask */}
-          <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-[#0D0D0D] via-transparent to-[#0D0D0D] z-10" />
+
+          {/* Mobile/Tablet Marquee (Horizontal) */}
+          <Marquee duration="30s" repeat={4} className="h-full flex lg:hidden">
+            {marqueeImages.map((src, i) => (
+              <div key={i} className="relative aspect-video w-[280px] md:w-[400px] shrink-0 overflow-hidden group rounded-2xl">
+                <Image
+                  src={src}
+                  alt={`Design ${i}`}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+            ))}
+          </Marquee>
         </motion.div>
 
-        {/* RIGHT SECTION: Content */}
-        <div className="w-full md:w-[60%] p-8 md:p-12 md:py-12 flex flex-col justify-between relative">
+        {/* RIGHT/TOP SECTION: Content */}
+        <div className="w-full lg:w-[60%] p-8 md:p-12 lg:py-12 flex flex-col justify-between relative">
           <div>
             <motion.div 
               initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true }}
               transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="flex justify-between items-start"
+              className="flex justify-between items-center w-full"
             >
               <h2 className="text-4xl md:text-5xl font-serif italic text-white tracking-tight leading-none">
                 whenver<span className="text-sm align-top not-italic">®</span>
               </h2>
-              <div className="flex flex-col items-end gap-1.5">
-                <span className={cn("text-base font-semibold transition-colors duration-300", isAdditionalActive ? "text-white" : "text-white/50")}>
+              <div className="flex items-center gap-2">
+                <span className={cn("text-sm md:text-base font-semibold transition-colors duration-300", isAdditionalActive ? "text-white" : "text-white/50")}>
                   Additional Active Task
                 </span>
-                <span className={cn("text-sm mb-1 font-semibold transition-colors duration-300", isAdditionalActive ? "text-white" : "text-white/50")}>+$995</span>
-                <PricingToggle 
-                  checked={isAdditionalActive} 
-                  onChange={setIsAdditionalActive} 
-                />
+                <span className={cn("text-sm md:text-base font-semibold transition-colors duration-300", isAdditionalActive ? "text-white" : "text-white/50")}>
+                  +$995
+                </span>
               </div>
             </motion.div>
             
-            <motion.p 
+            <motion.div 
               initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true }}
               transition={{ duration: 1.1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[#7C7C7C] text-[14px] font-medium font-sans max-w-[320px] mt-[12px] leading-[21px]"
+              className="flex justify-between items-center w-full mt-6"
             >
-              Submit any design task you need. Landing pages, product visuals, brand assets, and more.
-            </motion.p>
+              <p className="text-white/50 text-sm font-medium font-sans max-w-xs leading-relaxed">
+                Submit any design task you need. Landing pages, product visuals, brand assets, and more.
+              </p>
+              <PricingToggle 
+                checked={isAdditionalActive} 
+                onChange={setIsAdditionalActive} 
+              />
+            </motion.div>
 
             <motion.div 
               initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}

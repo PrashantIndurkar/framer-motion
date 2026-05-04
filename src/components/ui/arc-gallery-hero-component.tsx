@@ -76,7 +76,7 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
   const step = (endAngle - startAngle) / (count - 1);
 
   return (
-    <div className={cn("relative overflow-hidden w-full", className)}>
+    <div className={cn("relative overflow-visible w-full", className)}>
       {/* Background ring container that controls geometry */}
       <motion.div
         className="relative mx-auto origin-center"
