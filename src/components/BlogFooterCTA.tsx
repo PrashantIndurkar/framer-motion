@@ -19,9 +19,9 @@ export const BlogFooterCTA = () => {
         >
           <div className="flex items-baseline gap-0.5">
             <span className="text-3xl font-serif font-semibold italic tracking-tight" style={{ fontFamily: "var(--font-source-serif)" }}>
-              whenevr
+              Whenevr
             </span>
-            <sup className="text-[10px] font-sans -top-4 align-top leading-none font-bold opacity-80">®</sup>
+            <sup className="text-[10px] font-sans top-0 align-top leading-none font-bold opacity-80 ml-0.5" style={{ verticalAlign: "super" }}>®</sup>
           </div>
         </motion.div>
 

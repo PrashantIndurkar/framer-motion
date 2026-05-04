@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <main className="bg-background">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 md:pt-48 md:pb-32 min-h-hero flex flex-col justify-center overflow-hidden">
+      <section className="relative pt-16 pb-4 md:pt-40 md:pb-4 min-h-hero flex flex-col justify-center overflow-hidden">
         {/* Background Abstract Image with Silky-Smooth Gradient Overlays */}
         <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-full max-w-[1200px] pointer-events-none z-0">
           <div className="absolute -top-[20%] right-0 w-full md:w-[60%] h-[140%] overflow-hidden">
@@ -39,7 +39,7 @@ export default function Home() {
               {/* Top Silky Overlay */}
               <div className="absolute inset-x-0 top-0 h-[10%] bg-gradient-to-b from-background via-background/90 to-transparent"></div>
               {/* Reworked Bottom Overlay: Deeper and more aggressive to eliminate sharp ends */}
-              <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-background via-background via-background/95 via-background/80 to-transparent"></div>
+              <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-background via-background/90 to-transparent"></div>
             </div>
           </div>
         </div>
@@ -47,12 +47,12 @@ export default function Home() {
         <Container className="relative z-10 ">
           <div className="max-w-4xl ">
             {/* Marquee Section */}
-            <div className="mb-10 max-w-xl">
+            <div className="mb-8 max-w-xl">
               <MarqueeChips className="w-full -ml-2" />
             </div>
 
             {/* Headline */}
-            <div className="mb-10">
+            <div className="mb-6">
               <Text 
                 as="h1" 
                 size="hero"
@@ -61,7 +61,7 @@ export default function Home() {
               >
                 World-class <br />
                 design 
-                <span className="italic font-semibold" style={{ fontFamily: "var(--font-source-serif)" }}> whenevr</span><sup className="text-xl md:text-2xl lg:text-3xl align-top ml-1">®</sup> <br />
+                <span className="italic font-semibold" style={{ fontFamily: "var(--font-source-serif)" }}> Whenevr</span><sup className="text-xl md:text-2xl lg:text-3xl align-top ml-1">®</sup> <br />
                 you need it.
               </Text>
             </div>
@@ -78,9 +78,9 @@ export default function Home() {
             </div>
 
             {/* CTA Section */}
-            <div className="mt-12 flex flex-col md:flex-row items-start md:items-center gap-4">
+            <div className="mt-8 flex flex-col md:flex-row items-start md:items-center gap-4">
               <AnimatedButton 
-                className="shadow-[0_8px_20px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.15)]"
+                className="text-lg   font-semibold shadow-[0_8px_20px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.15)] "
               >
                 See Pricing
               </AnimatedButton>

@@ -2,12 +2,12 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { AnimatedButton } from "@/components/ui/animated-button"
+import { Button } from "@/components/ui/button"
 import { Text } from "@/components/ui/text"
-import { ChevronDown, X } from "lucide-react"
+import { ChevronDown, ChevronUp } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Drawer, DrawerContent } from "@/components/ui/drawer"
 import { Container } from "@/components/ui/container"
+import { motion, AnimatePresence } from "framer-motion"
 
 const NAV_LINKS = [
   { name: "Home", href: "/" },
@@ -49,19 +49,31 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Lock body scroll when menu is open
+  React.useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
   const navColor = isOpen ? "text-black" : (isDarkSection ? "text-white" : "text-black")
 
   return (
-    <Drawer open={isOpen} onOpenChange={setIsOpen}>
-      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+    <>
+      <header className="fixed top-0 left-0 right-0 z-[100] transition-all duration-500">
         <div 
           className={cn(
             "absolute inset-0 transition-all duration-500",
-            isScrolled ? "bg-white/5 backdrop-blur-[6px] border-b border-black/5" : "bg-transparent border-transparent"
+            isScrolled ? "bg-white/5 backdrop-blur-[6px]" : "bg-transparent"
           )} 
         />
 
-        <Container className="relative flex items-center justify-between py-6 z-10">
+        <Container className="relative flex items-center justify-between pt-[19px] pb-6 z-10">
           <Link 
             href="/" 
             className={cn(
@@ -70,55 +82,70 @@ export function Navbar() {
             )}
           >
             <span className="text-3xl font-serif font-semibold italic tracking-tight" style={{ fontFamily: "var(--font-source-serif)" }}>
-              whenevr
+              Whenevr
             </span>
-            <sup className="text-[10px] font-sans -top-4 align-top leading-none font-bold opacity-80">®</sup>
+            <sup className="text-sm font-sans -top-3 align-top leading-none font-bold opacity-80 ml-0.5" >®</sup>
           </Link>
-
           <div className="flex items-center gap-4">
-            <AnimatedButton 
+            <Button 
               variant="white"
-              className="h-[44px] px-8 text-sm shadow-sm"
+              className="h-auto py-2.5 px-4 text-sm font-semibold text-black shadow-sm"
               onClick={() => setIsOpen(!isOpen)}
-              hoverText={isOpen ? "Close" : "Open"}
             >
               <div className="flex items-center gap-2">
                 {isOpen ? "Close" : "Menu"}
-                {isOpen ? <X size={14} /> : <ChevronDown size={14} />}
+                {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
               </div>
-            </AnimatedButton>
+            </Button>
           </div>
         </Container>
       </header>
 
-      <DrawerContent className="min-h-screen flex flex-col items-center justify-center bg-background">
-        <div className="flex flex-col items-center gap-6">
-          {NAV_LINKS.map((link, i) => (
-            <Link 
-              key={link.name}
-              href={link.href} 
-              className={cn(
-                "text-6xl md:text-8xl font-serif font-bold tracking-tighter transition-all duration-500",
-                "hover:italic hover:tracking-tight",
-                "opacity-0 animate-in fade-in slide-in-from-bottom-4 fill-mode-forwards"
-              )}
-              style={{ animationDelay: `${i * 100}ms` }}
-              onClick={() => setIsOpen(false)}
-            >
-              {link.name}
-            </Link>
-          ))}
-        </div>
-        
-        <div className="absolute bottom-12 flex flex-col items-center gap-4">
-          <Text variant="serif" size="sm" className="text-black/40 italic">© 2025 Whenevr®</Text>
-          <div className="flex gap-6">
-            <Link href="#" className="text-xs font-medium text-black/40 hover:text-black transition-colors">Twitter</Link>
-            <Link href="#" className="text-xs font-medium text-black/40 hover:text-black transition-colors">Instagram</Link>
-            <Link href="#" className="text-xs font-medium text-black/40 hover:text-black transition-colors">LinkedIn</Link>
-          </div>
-        </div>
-      </DrawerContent>
-    </Drawer>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ y: "-100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-100%" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 z-[90] flex flex-col items-center justify-center bg-background border-none outline-none overflow-hidden"
+          >
+            <div className="flex flex-col items-center gap-1.5 translate-y-10">
+              {NAV_LINKS.map((link, i) => (
+                <motion.div
+                  key={link.name}
+                  initial={{ opacity: 0, y: -40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 + i * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <Link 
+                    href={link.href} 
+                    className={cn(
+                      "text-[64px] leading-[70px] font-sans font-semibold tracking-tight text-black transition-all duration-300",
+                      "hover:text-black/60"
+                    )}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 + NAV_LINKS.length * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-8"
+              >
+                <Text className="text-[14px] leading-[21px] font-sans font-semibold text-black">
+                  © 2025 Whenevr®
+                </Text>
+              </motion.div>
+            </div>
+            
+
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   )
 }

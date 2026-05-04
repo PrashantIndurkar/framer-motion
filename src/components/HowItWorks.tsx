@@ -39,7 +39,7 @@ const HowItWorks = () => {
                   className="text-[24px] lg:text-[26px] font-serif italic font-bold tracking-[-0.05em] leading-none"
                   style={{ fontFamily: "var(--font-source-serif)" }}
                 >
-                  whenevr<sup className="text-[10px] align-top ml-0.5 font-sans not-italic">®</sup>
+                  Whenevr<sup className="text-[10px] align-top ml-0.5 font-sans not-italic">®</sup>
                 </motion.span>
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -129,7 +129,7 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section className="relative z-10 py-32 bg-background border-t border-black/5">
+    <section className="relative z-10 pt-4 pb-32 bg-background">
       <Container>
         <div className="flex flex-col items-center text-center mb-24">
           <motion.div 

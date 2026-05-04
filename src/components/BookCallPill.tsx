@@ -25,7 +25,7 @@ export const BookCallPill = ({ className }: BookCallPillProps) => {
       <div className="flex items-center w-full h-full">
         <div className="relative w-11 h-11 rounded-full overflow-hidden border border-black/5 bg-neutral-100 flex-shrink-0">
           <Image 
-            src="/image/imgi_50_UK3ji9XKftVKablDa07xbZ7o.jpg" 
+            src="/image/imgi_2_hfneFL6CHBi5BnNvCeOaqU9HqE4.png" 
             alt="Avatar" 
             fill
             className="object-cover"

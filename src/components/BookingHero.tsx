@@ -8,7 +8,7 @@ import { AnimatedButton } from "@/components/ui/animated-button"
 export const BookingHero = () => {
   return (
     <section data-theme="dark" className="py-10 bg-black text-white flex flex-col justify-center overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6  w-full">
+      <div className="max-w-7xl mx-auto px-6 w-full">
         {/* Logo and Nav area */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
@@ -18,9 +18,9 @@ export const BookingHero = () => {
         >
           <div className="flex items-baseline gap-0.5 mb-4 ">
             <span className="text-3xl font-serif font-semibold italic tracking-tight" style={{ fontFamily: "var(--font-source-serif)" }}>
-              whenevr
+              Whenevr
             </span>
-            <sup className="text-[10px] font-sans -top-4 align-top leading-none font-bold opacity-80">®</sup>
+            <sup className="text-[10px] font-sans top-0 align-top leading-none font-bold opacity-80 ml-0.5" style={{ verticalAlign: "super" }}>®</sup>
           </div>
         </motion.div>
 
