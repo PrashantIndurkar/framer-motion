@@ -27,12 +27,25 @@ export default function Pricing() {
   const activeTasks = isAdditionalActive ? "Two active tasks" : "One active task";
 
   return (
-    <section className="py-20 bg-[#F2F2F2]">
+    <section className="py- bg-[#f0f0f0]">
       <Container>
-        <div className="overflow-hidden rounded-[32px] md:rounded-[40px] border border-black/5 bg-[#0D0D0D] shadow-2xl flex flex-col md:flex-row md:h-[620px]">
+        <motion.div 
+          initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+          className="bg-white p-2 rounded-[32px] md:rounded-[40px] border border-black/5 shadow-2xl"
+        >
+          <div className="overflow-hidden rounded-[24px] md:rounded-[32px] bg-[#0D0D0D] flex flex-col md:flex-row md:h-[620px] w-full">
         
         {/* LEFT SECTION: Marquee */}
-        <div className="w-full md:w-[40%] relative bg-[#0f0f0f] overflow-hidden min-h-[300px] md:h-full">
+        <motion.div 
+          initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full md:w-[40%] relative bg-[#0f0f0f] overflow-hidden min-h-[300px] md:h-full"
+        >
           <Marquee vertical duration="30s" repeat={4} className="h-full">
             {marqueeImages.map((src, i) => (
               <div key={i} className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden group">
@@ -49,12 +62,18 @@ export default function Pricing() {
           
           {/* Fade Mask */}
           <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-[#0D0D0D] via-transparent to-[#0D0D0D] z-10" />
-        </div>
+        </motion.div>
 
         {/* RIGHT SECTION: Content */}
         <div className="w-full md:w-[60%] p-8 md:p-12 md:py-12 flex flex-col justify-between relative">
           <div>
-            <div className="flex justify-between items-start">
+            <motion.div 
+              initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="flex justify-between items-start"
+            >
               <h2 className="text-4xl md:text-5xl font-serif italic text-white tracking-tight leading-none">
                 whenver<span className="text-sm align-top not-italic">®</span>
               </h2>
@@ -68,13 +87,25 @@ export default function Pricing() {
                   onChange={setIsAdditionalActive} 
                 />
               </div>
-            </div>
+            </motion.div>
             
-            <p className="text-[#7C7C7C] text-[14px] font-medium font-sans max-w-[320px] mt-[12px] leading-[21px]">
+            <motion.p 
+              initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[#7C7C7C] text-[14px] font-medium font-sans max-w-[320px] mt-[12px] leading-[21px]"
+            >
               Submit any design task you need. Landing pages, product visuals, brand assets, and more.
-            </p>
+            </motion.p>
 
-            <div className="mt-[24px]">
+            <motion.div 
+              initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-[24px]"
+            >
               <div className="flex items-baseline gap-1">
                 <AnimatePresence mode="wait">
                   <motion.span
@@ -89,17 +120,23 @@ export default function Pricing() {
                 </AnimatePresence>
                 <span className="text-white/40 text-[20px] font-sans">/month</span>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-col gap-[22px] mt-[32px] mb-8">
+            <motion.div 
+              initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-col gap-[22px] mt-[32px] mb-8"
+            >
               <FeatureItem>Unlimited design requests</FeatureItem>
               <FeatureItem className="transition-all duration-300">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={activeTasks}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 10 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
                   >
                     {activeTasks} at a time
                   </motion.span>
@@ -108,17 +145,25 @@ export default function Pricing() {
               <FeatureItem>Delivered in a few business days</FeatureItem>
               <FeatureItem>Source files included</FeatureItem>
               <FeatureItem>Cancel or pause anytime</FeatureItem>
-            </div>
+            </motion.div>
           </div>
 
-          <AnimatedButton 
-            variant="white" 
-            className="w-full text-lg py-6"
+          <motion.div
+            initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            Join today
-          </AnimatedButton>
+            <AnimatedButton 
+              variant="white" 
+              className="w-full text-lg py-6"
+            >
+              Join today
+            </AnimatedButton>
+          </motion.div>
         </div>
-      </div>
+          </div>
+        </motion.div>
       </Container>
     </section>
   );

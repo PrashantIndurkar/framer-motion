@@ -28,10 +28,10 @@ export const BlogFooterCTA = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           {/* Left Content */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <h2 className="text-5xl md:text-[82px] font-semibold font-outfit">
               Design <span className="italic font-serif" style={{ fontFamily: "var(--font-source-serif)" }}>doesn't</span> need to be complicated.
@@ -51,10 +51,10 @@ export const BlogFooterCTA = () => {
 
           {/* Right Content - Calendar Card */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 30 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="relative"
           >
             <div className="ml-auto w-full max-w-lg">

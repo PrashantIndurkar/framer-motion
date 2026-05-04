@@ -6,6 +6,7 @@ import { Text } from "@/components/ui/text";
 import { Container } from "@/components/ui/container";
 import { ArcGalleryHero } from "@/components/ui/arc-gallery-hero-component";
 import { BookCallPill } from "./BookCallPill";
+import { cn } from "@/lib/utils";
 
 const memoryImages = [
   '/image/imgi_10_UT4fxQBnxf542T5Cf7zZOvBxy0.png',
@@ -26,10 +27,28 @@ const memoryImages = [
 export const ClientStats = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
+  const charVariants = {
+    hidden: {
+      y: "110%",
+      opacity: 0,
+      filter: "blur(8px)",
+    },
+    visible: (i: number) => ({
+      y: 0,
+      opacity: 1,
+      filter: "blur(0px)",
+      transition: {
+        delay: 0.5 + i * 0.05, // Start after main text fades in
+        duration: 1.1,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    }),
+  };
+
   return (
     <section 
       ref={sectionRef} 
-      className="relative pt-96 pb-96 md:pt-[400px] md:pb-[400px] overflow-hidden bg-background z-20"
+      className="relative pt-96 pb-96 md:pt-[400px] md:pb-[400px] overflow-hidden bg-[#f0f0f0] z-20"
     >
       {/* Background Arc Gallery */}
       <div className="absolute inset-0 z-20 pointer-events-none overflow-visible">
@@ -62,7 +81,22 @@ export const ClientStats = () => {
             className="text-[48px] md:text-[56px] font-semibold tracking-tighter leading-[1.05] text-black font-sans max-w-4xl"
           >
             100+ clients getting <br />
-            <Text as="span" variant="serif" className="italic font-serif">better</Text> design, faster.
+            <Text as="span" variant="serif" className="italic font-serif">better</Text>
+            <span className="inline-flex overflow-hidden align-bottom pb-2 -mb-2">
+              {" design, faster.".split("").map((char, i) => (
+                <motion.span
+                  key={i}
+                  custom={i}
+                  variants={charVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className="inline-block"
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
+            </span>
           </Text>
         </motion.div>
 
@@ -77,8 +111,8 @@ export const ClientStats = () => {
       </Container>
 
       {/* Edge Fades for Section Blending */}
-      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background via-background/80 to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background via-background/80 to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#f0f0f0] via-[#f0f0f0]/80 to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#f0f0f0] via-[#f0f0f0]/80 to-transparent z-10 pointer-events-none" />
     </section>
   );
 };

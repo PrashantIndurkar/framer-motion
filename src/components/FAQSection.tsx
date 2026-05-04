@@ -4,6 +4,7 @@ import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { FAQItem } from "@/components/FAQItem";
+import { motion } from "framer-motion";
 
 const faqs = [
   {
@@ -31,21 +32,33 @@ const faqs = [
 
 export function FAQSection() {
   return (
-    <section className="bg-neutral-100 py-24 px-6 flex justify-center">
+    <section className="bg-[#f0f0f0] py-24 px-6 flex justify-center">
       {/* Outer White Frame */}
-      <div className="bg-white rounded-[32px] border border-black/5 p-2 w-full max-w-[588px] h-[716px] flex flex-col shadow-sm">
+      <motion.div 
+        initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+        className="bg-white rounded-3xl  border-[#f8f8f8] border-4 p-2 w-full max-w-[588px] h-[716px] flex flex-col shadow-sm"
+      >
         {/* Inner Content Card */}
-        <div className="bg-[#F7F7F7] rounded-[24px] p-10 flex flex-col h-full overflow-hidden">
+        <div className="bg-white rounded-[24px] p-10 flex flex-col h-full overflow-hidden">
           {/* Header Section */}
           <div className="mb-10">
             <Badge variant="faq" className="mb-8 font-semibold text-[12px] tracking-wider bg-white text-neutral-500 uppercase py-1.5 px-4 border border-black/5 rounded-full shadow-sm">
               FAQs
             </Badge>
             
-            <h2 className="text-[32px] md:text-[40px] font-semibold tracking-tight text-neutral-900 leading-[1.1] mb-8">
+            <motion.h2 
+              initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[32px] md:text-[40px] font-semibold tracking-tight text-neutral-900 leading-[1.1] mb-8"
+            >
               Frequently <br />
               Asked <span className="italic font-serif" style={{ fontFamily: "var(--font-source-serif)" }}>Questions</span>
-            </h2>
+            </motion.h2>
 
             <div className="flex justify-between items-end">
               <div>
@@ -67,16 +80,23 @@ export function FAQSection() {
           {/* FAQ List Section */}
           <div className="flex-1 overflow-y-auto pr-2 -mr-2 scrollbar-hide space-y-2">
             {faqs.map((faq, index) => (
-              <FAQItem
+              <motion.div
                 key={index}
-                question={faq.question}
-                answer={faq.answer}
-                defaultOpen={faq.defaultOpen}
-              />
+                initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.1, delay: 0.2 + index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <FAQItem
+                  question={faq.question}
+                  answer={faq.answer}
+                  defaultOpen={faq.defaultOpen}
+                />
+              </motion.div>
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

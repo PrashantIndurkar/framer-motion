@@ -103,21 +103,41 @@ export const Testimonials = () => {
   }, [handleNext, isPaused, isAnimating]);
 
   return (
-    <section className="flex flex-col items-center py-32 bg-[#F2F2F2] overflow-hidden">
+    <section className="flex flex-col items-center py-32 bg-[#f0f0f0] overflow-hidden">
       {/* Label */}
-      <div className="px-4 py-1.5 bg-white rounded-full border border-black/5 shadow-sm mb-6">
-        <span className="text-[12px] font-bold text-black/60 tracking-[0.1em] uppercase">
-          Testimonials
-        </span>
-      </div>
+    <div className="flex justify-center">
+             <motion.div 
+                initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+                className="mb-10"
+              >
+                <span className="px-4 py-1.5 bg-white border border-black/5 rounded-full text-base font-semibold text-black shadow-sm">
+Testimonials
+                </span>
+              </motion.div>
+            </div>
 
       {/* Heading */}
-      <h2 className="text-[48px] md:text-[64px] font-bold text-center leading-[1.05] tracking-tight mb-12 max-w-3xl font-sans">
+      <motion.h2 
+        initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+        className="text-[48px] md:text-[56px] font-semibold text-center leading-[1.05] tracking-tight mb-12 max-w-3xl font-sans"
+      >
         Turns out, people like <br />
         getting things <span className="italic font-serif font-medium">done.</span>
-      </h2>
+      </motion.h2>
 
-      <div className="relative w-full flex justify-center">
+      <motion.div 
+        initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        className="relative w-full flex justify-center"
+      >
         <div 
           className="relative overflow-hidden py-10 -my-10"
           style={{ 
@@ -144,10 +164,16 @@ export const Testimonials = () => {
             ))}
           </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Dot Navigation */}
-      <div className="flex gap-2 mt-[45px] bg-black/5 p-1.5 rounded-full px-3">
+      <motion.div 
+        initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        className="flex gap-2 mt-[45px] bg-black/5 p-1.5 rounded-full px-3"
+      >
         {testimonials.map((_, i) => {
           // Calculate active dot based on currentIndex
           const activeIndex = (currentIndex - 3 + testimonials.length) % testimonials.length;
@@ -165,7 +191,7 @@ export const Testimonials = () => {
             />
           );
         })}
-      </div>
+      </motion.div>
     </section>
   );
 };

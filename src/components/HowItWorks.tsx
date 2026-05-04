@@ -8,6 +8,7 @@ import Marquee from "@/components/ui/marquee";
 import { cn } from "@/lib/utils";
 import { AnimatedFolder } from "@/components/ui/3d-folder";
 import { AnimatedButton } from "@/components/ui/animated-button";
+import { Send } from "lucide-react";
 
 const portfolioData = [
   {
@@ -98,16 +99,35 @@ const HowItWorks = () => {
             ))}
           </Marquee>
           
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+          <div className="absolute inset-0 flex items-center justify-center z-20">
             <motion.div 
-              initial={{ rotate: 0 }}
-              whileInView={{ rotate: 3 }}
-              viewport={{ once: true }}
-              style={{ fontFamily: "var(--font-source-serif)" }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className=" bg-black rounded-2xl flex items-center justify-center shadow-2xl pointer-events-auto"
+              initial="initial"
+              whileHover="hover"
+              className="bg-black rounded-2xl flex items-center justify-center shadow-2xl cursor-pointer overflow-hidden relative w-[96px] h-[96px]"
             >
-               <span style={{ fontFamily: "var(--font-source-serif)" }} className="text-white text-6xl p-4 px-5 font-serif italic font-semibold">w</span>
+              {/* W Icon */}
+              <motion.div
+                variants={{
+                  initial: { y: 0, x: 0, opacity: 1, rotate: 3 },
+                  hover: { y: -40, x: 40, opacity: 0, rotate: 15 }
+                }}
+                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+                className="flex items-center justify-center"
+              >
+                 <span style={{ fontFamily: "var(--font-source-serif)" }} className="text-white text-6xl font-serif italic font-semibold p-4 px-5">w</span>
+              </motion.div>
+
+              {/* Send Icon */}
+              <motion.div
+                variants={{
+                  initial: { y: 40, x: -40, opacity: 0, rotate: -15 },
+                  hover: { y: 0, x: 0, opacity: 1, rotate: 0 }
+                }}
+                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+                className="absolute inset-0 flex items-center justify-center"
+              >
+                <Send className="text-white w-10 h-10" />
+              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -129,14 +149,14 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section className="relative z-10 pt-4 pb-32 bg-background">
+    <section className="relative z-10 pt-4 pb-32 bg-[#f0f0f0]">
       <Container>
         <div className="flex flex-col items-center text-center mb-24">
           <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
             className="mb-10"
           >
             <span className="px-4 py-1.5 bg-white border border-black/5 rounded-full text-base font-semibold text-black shadow-sm">
@@ -145,10 +165,10 @@ const HowItWorks = () => {
           </motion.div>
           
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.1 }}
+            transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <Text 
               as="h2" 
@@ -165,14 +185,14 @@ const HowItWorks = () => {
           {cards.map((card, index) => (
             <motion.div
               key={card.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+              transition={{ duration: 1.1, delay: 0.2 + index * 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col w-full max-w-[384px]"
             >
-              <div className="bg-white p-2 rounded-[32px] h-[450px] shadow-md border border-black/5 flex flex-col group hover:shadow-xl transition-all duration-700 relative">
-                <div className="flex flex-col h-full w-full bg-[#F7F7F7] rounded-[24px] overflow-hidden">
+              <div className="bg-white p-2 rounded-2xl h-[450px] shadow-md border border-black/5 flex flex-col group hover:shadow-xl transition-all duration-700 relative hover:z-30">
+                <div className="flex flex-col h-full w-full bg-[#F7F7F7] rounded-2xl overflow-visible">
                   <div className="h-[233px] w-full">
                     {card.visual}
                   </div>

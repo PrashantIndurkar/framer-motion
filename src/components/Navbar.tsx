@@ -108,7 +108,7 @@ export function Navbar() {
             animate={{ y: 0 }}
             exit={{ y: "-100%" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[90] flex flex-col items-center justify-center bg-background border-none outline-none overflow-hidden"
+            className="fixed inset-0 z-[90] flex flex-col items-center justify-center bg-[#f0f0f0] border-none outline-none overflow-hidden"
           >
             <div className="flex flex-col items-center gap-1.5 translate-y-10">
               {NAV_LINKS.map((link, i) => (

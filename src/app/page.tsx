@@ -22,7 +22,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="bg-background">
+    <main className="bg-[#f0f0f0]">
       {/* Hero Section */}
       <section className="relative pt-16 pb-4 md:pt-40 md:pb-4 min-h-hero flex flex-col justify-center overflow-hidden">
         {/* Background Abstract Image with Silky-Smooth Gradient Overlays */}
@@ -37,9 +37,9 @@ export default function Home() {
                 priority
               />
               {/* Top Silky Overlay */}
-              <div className="absolute inset-x-0 top-0 h-[10%] bg-gradient-to-b from-background via-background/90 to-transparent"></div>
+              <div className="absolute inset-x-0 top-0 h-[10%] bg-gradient-to-b from-[#f0f0f0] via-[#f0f0f0]/90 to-transparent"></div>
               {/* Reworked Bottom Overlay: Deeper and more aggressive to eliminate sharp ends */}
-              <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-background via-background/90 to-transparent"></div>
+              <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[#f0f0f0] via-[#f0f0f0]/90 to-transparent"></div>
             </div>
           </div>
         </div>

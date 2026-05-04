@@ -31,6 +31,7 @@ interface GridBlogCardProps {
   image: string
   tag: string
   className?: string
+  index?: number
 }
 
 const GridBlogCard = ({
@@ -40,14 +41,15 @@ const GridBlogCard = ({
   image,
   tag,
   className,
+  index = 0,
 }: GridBlogCardProps) => {
   return (
     <Link href={`/blog/${slug}`} className="block w-full md:w-[389px]">
       <motion.article
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         viewport={{ once: true }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 1.1, delay: 0.2 + index * 0.1, ease: [0.16, 1, 0.3, 1] }}
         className={cn(
           "group flex flex-col bg-white rounded-3xl overflow-hidden p-2 w-full h-[458px] border border-neutral-200 shadow-md transition-all duration-300 hover:shadow-lg hover:border-neutral-300",
           className
@@ -115,12 +117,12 @@ export default function BlogGridSection() {
   ]
 
   return (
-    <section className="bg-[#F2F2F2] pt-8 pb-20 px-6">
+    <section className="bg-[#f0f0f0] pt-8 pb-20 px-6">
       <div className="max-w-[1200px] mx-auto">
         {/* Using a strict grid to prevent blowout */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
           {blogs.map((blog, index) => (
-            <GridBlogCard key={index} {...blog} />
+            <GridBlogCard key={index} {...blog} index={index} />
           ))}
         </div>
       </div>

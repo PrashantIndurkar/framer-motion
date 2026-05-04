@@ -62,10 +62,10 @@ const BlogCard = ({
   return (
     <Link href={`/blog/${slug}`} className="block">
       <motion.article
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         viewport={{ once: true }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         className={cn(
           "flex flex-col md:flex-row bg-white rounded-3xl overflow-hidden p-2 md:h-[500px] gap-6 md:gap-8 border border-black/5 hover:border-black/10 transition-colors",
           className
@@ -129,16 +129,22 @@ export default function BlogSection() {
   ]
 
   return (
-    <section className="bg-[#F2F2F2] pt-20 pb-0 px-6">
+    <section className="bg-[#f0f0f0] pt-20 pb-0 px-6">
       <div className="max-w-[1200px] mx-auto space-y-12">
         {/* Header */}
-        <div className="flex flex-col items-center text-center space-y-6 mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col items-center text-center space-y-6 mb-16"
+        >
           <TagBadge variant="pill">Blog</TagBadge>
           <h2 className="text-4xl md:text-6xl font-semibold tracking-tight text-neutral-900 font-outfit max-w-3xl">
             Practical reads to help you move{" "}
             <span className="italic font-serif">faster.</span>
           </h2>
-        </div>
+        </motion.div>
 
         {/* Blog Cards List */}
         <div className="grid gap-8">

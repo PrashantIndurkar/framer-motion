@@ -4,6 +4,7 @@ import { Navbar } from "@/components/Navbar";
 import { Source_Serif_4, Inter, Outfit } from "next/font/google";
 import { Container } from "@/components/ui/container";
 import { IntroLoaderWrapper } from "@/components/IntroLoaderWrapper";
+import { SmoothScroll } from "@/components/SmoothScroll";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -33,11 +34,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${sourceSerif.variable} ${outfit.variable} scroll-smooth`}>
+    <html lang="en" className={`${inter.variable} ${sourceSerif.variable} ${outfit.variable}`}>
       <body className="antialiased font-sans">
         <IntroLoaderWrapper>
           <Navbar />
-          {children}
+          <SmoothScroll>
+            {children}
+          </SmoothScroll>
         </IntroLoaderWrapper>
       </body>
     </html>

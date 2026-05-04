@@ -1,7 +1,8 @@
 "use client"
 
 import { motion, useScroll, useTransform, useSpring } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useState, useEffect } from "react"
+import { useSmoothScroll } from "./SmoothScroll"
 
 const items = [
   { 
@@ -34,15 +35,29 @@ export function HorizontalScrollGallery() {
     restDelta: 0.001
   })
 
+  const { smoothY } = useSmoothScroll() || {}
+  const [sectionTop, setSectionTop] = useState(0)
+
+  useEffect(() => {
+    if (targetRef.current) {
+      // We need the distance from the top of the content container
+      // In a SmoothScroll wrapper, we can use offsetTop
+      setSectionTop(targetRef.current.offsetTop)
+    }
+  }, [])
+
   // Map progress (0-1) to horizontal translation
-  // 3 items, each 70vw. 
-  // To move from Item 1 at left to Item 3 at left:
-  // Item 1 is at 0vw
-  // Item 2 is at 70vw
-  // Item 3 is at 140vw
-  // So we move from 0% to -(140/210)% of the total container width?
-  // Easier to use -140vw directly.
   const x = useTransform(xProgress, [0, 1], ["0vw", "-140vw"])
+
+  // COMPENSATE for SmoothScroll wrapper translation to simulate "sticky"
+  // When smoothY > sectionTop, we translate the inner div downwards by (smoothY - sectionTop)
+  // so it stays fixed at the top of the viewport.
+  const stickyY = useTransform(smoothY || useSpring(0), (latest) => {
+    if (!latest || latest < sectionTop) return 0
+    const distance = latest - sectionTop
+    const maxDistance = (targetRef.current?.offsetHeight || 0) - window.innerHeight
+    return Math.min(distance, maxDistance)
+  })
 
   return (
     <section 
@@ -50,8 +65,15 @@ export function HorizontalScrollGallery() {
       data-theme="dark"
       className="relative h-[400vh] bg-background-dark z-30"
     >
-      {/* Sticky container that stays fixed while you scroll vertically */}
-      <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
+      {/* 
+          Manual Sticky container:
+          We use translateY (via stickyY) to keep this div at the top of the viewport
+          while the user scrolls through the h-[400vh] section.
+      */}
+      <motion.div 
+        style={{ y: stickyY }}
+        className="relative h-screen w-full flex items-center overflow-hidden"
+      >
         
         {/* Horizontal flex container that moves left/right */}
         <motion.div 
@@ -74,7 +96,7 @@ export function HorizontalScrollGallery() {
             </div>
           ))}
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   )
 }

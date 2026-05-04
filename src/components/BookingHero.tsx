@@ -7,7 +7,7 @@ import { AnimatedButton } from "@/components/ui/animated-button"
 
 export const BookingHero = () => {
   return (
-    <section data-theme="dark" className="py-10 bg-black text-white flex flex-col justify-center overflow-hidden">
+    <section id="book-a-call" data-theme="dark" className="py-10 bg-black text-white flex flex-col justify-center overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 w-full">
         {/* Logo and Nav area */}
         <motion.div 
@@ -27,10 +27,10 @@ export const BookingHero = () => {
         <div className="grid grid-cols-1 lg:grid-cols-[1.3fr,0.7fr] gap-12 lg:gap-16 items-center">
           {/* Left Content */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <h1 className="text-5xl lg:text-[72px] xl:text-[82px] font-semibold tracking-tight leading-[1.05]">
               <span>Design <span className="italic font-serif" style={{ fontFamily: "var(--font-source-serif)" }}>doesn't</span> need</span> <br /> to be complicated.
@@ -50,9 +50,10 @@ export const BookingHero = () => {
 
           {/* Right Content - Calendar Card */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="relative"
           >
             {/* Subtle background glow */}

@@ -45,8 +45,8 @@ export function BrandMarquee() {
         {/* Infinite Marquee with Fading Masks */}
         <div className="relative flex-grow md:flex-initial w-full max-w-[800px] overflow-hidden my-auto">
           {/* Smooth Edge Fades using Gradients */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-background via-background/80 to-transparent z-10"></div>
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-background via-background/80 to-transparent z-10"></div>
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#f0f0f0] via-[#f0f0f0]/80 to-transparent z-10"></div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#f0f0f0] via-[#f0f0f0]/80 to-transparent z-10"></div>
           
           <Marquee 
             className="py-1" 
