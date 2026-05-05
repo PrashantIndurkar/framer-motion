@@ -170,6 +170,7 @@ const PricingDetails = ({
       <AnimatedButton 
         variant="white" 
         className="w-full text-lg py-6"
+        onClick={() => window.location.href = "https://stripe.com/in"}
       >
         Join today
       </AnimatedButton>
@@ -184,9 +185,10 @@ export default function Pricing() {
   const activeTasks = isAdditionalActive ? "Two active tasks" : "One active task";
 
   return (
-    <section id="pricing" className="py-20 bg-[#f0f0f0]">
+    <section className="py-20 bg-[#f0f0f0]">
       <Container>
         <motion.div 
+          id="pricing"
           initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true }}

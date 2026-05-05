@@ -56,6 +56,9 @@ const SubscribeCardVisual = () => (
         
         <div className="mt-6">
           <AnimatedButton 
+            onClick={() => {
+              document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth", block: "center" });
+            }}
             className="w-full h-[56px] shadow-[0_12px_24px_rgba(0,0,0,0.12)]"
           >
             Join today

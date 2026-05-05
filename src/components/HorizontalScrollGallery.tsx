@@ -2,7 +2,6 @@
 
 import { motion, useScroll, useTransform, useSpring, MotionValue } from "framer-motion"
 import { useRef, useState, useEffect, RefObject } from "react"
-import { useSmoothScroll } from "./SmoothScroll"
 import Marquee from "@/components/ui/marquee"
 
 const items = [
@@ -52,16 +51,11 @@ const MobileGallery = () => (
   </section>
 );
 
-/**
- * Desktop-specific gallery that uses complex scroll-driven sticky animation
- */
 const DesktopGallery = ({ 
   targetRef, 
-  stickyY, 
   x 
 }: { 
   targetRef: RefObject<HTMLDivElement>;
-  stickyY: MotionValue<number>;
   x: MotionValue<string>;
 }) => (
   <section 
@@ -69,10 +63,7 @@ const DesktopGallery = ({
     data-theme="dark"
     className="relative h-[400vh] bg-background-dark z-30"
   >
-    <motion.div 
-      style={{ y: stickyY }}
-      className="relative h-screen w-full flex items-center overflow-hidden"
-    >
+    <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
       <motion.div 
         style={{ x }}
         className="flex flex-nowrap will-change-transform"
@@ -92,7 +83,7 @@ const DesktopGallery = ({
           </div>
         ))}
       </motion.div>
-    </motion.div>
+    </div>
   </section>
 );
 
@@ -122,30 +113,41 @@ export function HorizontalScrollGallery() {
     restDelta: 0.001
   })
 
-  const { smoothY } = useSmoothScroll() || {}
-  const [sectionTop, setSectionTop] = useState(0)
-
-  useEffect(() => {
-    if (targetRef.current && isDesktop) {
-      setSectionTop(targetRef.current.offsetTop)
-    }
-  }, [isDesktop])
-
   // Map progress (0-1) to horizontal translation
   const x = useTransform(xProgress, [0, 1], ["0vw", "-140vw"])
-
-  // COMPENSATE for SmoothScroll wrapper translation to simulate "sticky"
-  const stickyY = useTransform(smoothY || useSpring(0), (latest) => {
-    if (!isDesktop || !latest || latest < sectionTop) return 0
-    const distance = latest - sectionTop
-    const maxDistance = (targetRef.current?.offsetHeight || 0) - window.innerHeight
-    return Math.min(distance, maxDistance)
-  })
 
   if (!isDesktop) {
     return <MobileGallery />
   }
 
-  return <DesktopGallery targetRef={targetRef} stickyY={stickyY} x={x} />
+  return (
+    <section 
+      ref={targetRef}
+      data-theme="dark"
+      className="relative h-[400vh] bg-background-dark z-30"
+    >
+      <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
+        <motion.div 
+          style={{ x }}
+          className="flex flex-nowrap will-change-transform"
+        >
+          {items.map((item) => (
+            <div
+              key={item.id}
+              className="flex-shrink-0 w-[70vw] h-screen relative overflow-hidden bg-neutral-900 border-r border-white/10"
+            >
+              <img
+                src={item.image}
+                alt={`Gallery item ${item.id}`}
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  )
 }
 

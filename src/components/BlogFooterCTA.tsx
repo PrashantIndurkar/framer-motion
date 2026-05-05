@@ -41,6 +41,9 @@ export const BlogFooterCTA = () => {
             </p>
             <div className="mt-10">
               <AnimatedButton 
+                onClick={() => {
+                  document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth", block: "center" });
+                }}
                 variant="white"
                 className="shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]"
               >

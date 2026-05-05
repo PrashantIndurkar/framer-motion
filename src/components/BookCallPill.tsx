@@ -17,10 +17,7 @@ export const BookCallPill = ({ className }: BookCallPillProps) => {
       initial="initial"
       whileHover="hover"
       onClick={() => {
-        const element = document.getElementById("book-a-call");
-        if (element) {
-          element.scrollIntoView({ behavior: "auto" });
-        }
+        document.getElementById("book-a-call")?.scrollIntoView({ behavior: "smooth" });
       }}
       className={cn(
         "flex items-center bg-white border border-black/5 p-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer group h-[56px] w-fit min-w-[224px] overflow-hidden relative",

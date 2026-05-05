@@ -221,7 +221,7 @@ export default function BlogSection() {
   const standardBlogs = blogs.filter(b => !b.isFeatured);
 
   return (
-    <section className="bg-[#f0f0f0] pt-20 pb-20 px-6">
+    <section id="blog" className="bg-[#f0f0f0] pt-20 pb-20 px-6">
       <div className="max-w-[1200px] mx-auto">
         {/* Header */}
         <motion.div 

@@ -10,9 +10,9 @@ import { Container } from "@/components/ui/container"
 import { motion, AnimatePresence } from "framer-motion"
 
 const NAV_LINKS = [
-  { name: "Home", href: "/" },
-  { name: "Pricing", href: "/pricing" },
-  { name: "Blog", href: "/blog" },
+  { name: "Home", href: "/#home" },
+  { name: "Pricing", href: "/#pricing" },
+  { name: "Blog", href: "/#blog" },
   { name: "404", href: "/404" },
 ]
 
@@ -75,7 +75,13 @@ export function Navbar() {
 
         <Container className="relative flex items-center justify-between pt-[19px] pb-6 z-10">
           <Link 
-            href="/" 
+            href="/#home" 
+            onClick={(e) => {
+              if (window.location.pathname === "/") {
+                e.preventDefault()
+                document.getElementById("home")?.scrollIntoView({ behavior: "smooth" })
+              }
+            }}
             className={cn(
               "flex items-baseline gap-0.5 hover:opacity-80 transition-colors duration-500",
               navColor
@@ -89,12 +95,12 @@ export function Navbar() {
           <div className="flex items-center gap-4">
             <Button 
               variant="white"
-              className="h-auto py-2.5 px-4 text-sm font-semibold text-black shadow-sm"
+              className="h-auto text-base py-2.5 px-4 font-semibold text-black shadow-sm"
               onClick={() => setIsOpen(!isOpen)}
             >
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
                 {isOpen ? "Close" : "Menu"}
-                {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
               </div>
             </Button>
           </div>
@@ -124,7 +130,20 @@ export function Navbar() {
                       "text-[64px] leading-[70px] font-sans font-semibold tracking-tight text-black transition-all duration-300",
                       "hover:text-black/60"
                     )}
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => {
+                      setIsOpen(false)
+                      if (link.href.startsWith("/#") && window.location.pathname === "/") {
+                        e.preventDefault()
+                        const id = link.href.replace("/#", "")
+                        const element = document.getElementById(id)
+                        if (element) {
+                          element.scrollIntoView({ 
+                            behavior: "smooth", 
+                            block: id === "home" ? "start" : "center" 
+                          })
+                        }
+                      }
+                    }}
                   >
                     {link.name}
                   </Link>

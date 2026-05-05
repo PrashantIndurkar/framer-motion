@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <main className="bg-[#f0f0f0]">
       {/* Hero Section */}
-      <section className="relative pt-24 pb-12 md:pt-40 md:pb-40 lg:pt-32 lg:min-h-hero-compact flex flex-col lg:justify-start overflow-hidden">
+      <section id="home" className="relative pt-24 pb-12 md:pt-40 md:pb-40 lg:pt-50 lg:pb-40 flex flex-col lg:justify-start overflow-hidden">
         
         <Container className="relative z-10 order-1 md:order-none">
           <div className="max-w-4xl ">
@@ -38,11 +38,11 @@ export default function Home() {
                 as="h1" 
                 size="hero"
                 weight="semibold"
-                className="tracking-tighter text-black !text-[42px] sm:!text-6xl md:!text-7xl !leading-[1.1] md:!leading-tight"
+                className="tracking-tighter text-black !text-[42px] sm:!text-6xl md:!text-7xl lg:!text-[82px] "
               >
                 World-class <br />
                 design 
-                <span className="italic font-semibold" style={{ fontFamily: "var(--font-source-serif)" }}> whenevr</span><sup className="text-lg md:text-2xl lg:text-3xl align-top ml-1">®</sup> <br />
+                <span className="italic font-semibold" style={{ fontFamily: "var(--font-source-serif)" }}> whenevr</span><sup className="text-lg md:text-2xl lg:text-3xl align-top top-0">®</sup> <br />
                 you need it.
               </Text>
             </div>
@@ -61,6 +61,9 @@ export default function Home() {
             {/* CTA Section */}
             <div className="mt-8 flex flex-col md:flex-row items-start md:items-center gap-4">
               <AnimatedButton 
+                onClick={() => {
+                  document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth", block: "center" });
+                }}
                 className="text-lg font-semibold shadow-[0_8px_20px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.15)] "
               >
                 See Pricing
@@ -108,7 +111,7 @@ export default function Home() {
       </section>
 
       {/* Brand Marquee Section */}
-      <section className="relative z-10 py-12 md:py-16 -mt-8 md:mt-0">
+      <section className="relative z-10 py-12 md:py-16 lg:pt-0 -mt-8 md:mt-0">
         <Container>
           <BrandMarquee />
         </Container>
