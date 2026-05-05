@@ -1,7 +1,7 @@
 "use client"
 
-import { motion, useScroll, useTransform, useSpring } from "framer-motion"
-import { useRef, useState, useEffect } from "react"
+import { motion, useScroll, useTransform, useSpring, MotionValue } from "framer-motion"
+import { useRef, useState, useEffect, RefObject } from "react"
 import { useSmoothScroll } from "./SmoothScroll"
 import Marquee from "@/components/ui/marquee"
 
@@ -19,6 +19,82 @@ const items = [
     image: "/image/imgi_81_XTdwXzaaZ0uFZA76FvHmRgz1z4.jpg" 
   },
 ]
+
+/**
+ * Mobile-specific gallery that uses a simple Marquee for infinite scrolling
+ */
+const MobileGallery = () => (
+  <section className="bg-background-dark py-12 overflow-hidden">
+    <div className="h-[450px] w-full flex items-center">
+      <Marquee 
+        className="py-0" 
+        pauseOnHover={false}
+        repeat={4}
+        duration="60s"
+        gap="1rem"
+      >
+        {items.map((item) => (
+          <div
+            key={`mobile-${item.id}`}
+            className="flex-shrink-0 w-[80vw] h-[450px] relative overflow-hidden bg-neutral-900 border-r border-white/5"
+          >
+            <img
+              src={item.image}
+              alt={`Gallery item ${item.id}`}
+              className="w-full h-full object-cover"
+              loading="eager"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+          </div>
+        ))}
+      </Marquee>
+    </div>
+  </section>
+);
+
+/**
+ * Desktop-specific gallery that uses complex scroll-driven sticky animation
+ */
+const DesktopGallery = ({ 
+  targetRef, 
+  stickyY, 
+  x 
+}: { 
+  targetRef: RefObject<HTMLDivElement>;
+  stickyY: MotionValue<number>;
+  x: MotionValue<string>;
+}) => (
+  <section 
+    ref={targetRef}
+    data-theme="dark"
+    className="relative h-[400vh] bg-background-dark z-30"
+  >
+    <motion.div 
+      style={{ y: stickyY }}
+      className="relative h-screen w-full flex items-center overflow-hidden"
+    >
+      <motion.div 
+        style={{ x }}
+        className="flex flex-nowrap will-change-transform"
+      >
+        {items.map((item) => (
+          <div
+            key={item.id}
+            className="flex-shrink-0 w-[70vw] h-screen relative overflow-hidden bg-neutral-900 border-r border-white/10"
+          >
+            <img
+              src={item.image}
+              alt={`Gallery item ${item.id}`}
+              className="w-full h-full object-cover"
+              loading="eager"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+          </div>
+        ))}
+      </motion.div>
+    </motion.div>
+  </section>
+);
 
 export function HorizontalScrollGallery() {
   const targetRef = useRef<HTMLDivElement>(null)
@@ -67,67 +143,9 @@ export function HorizontalScrollGallery() {
   })
 
   if (!isDesktop) {
-    return (
-      <section className="bg-background-dark py-12 overflow-hidden">
-        <div className="h-[450px] w-full flex items-center">
-          <Marquee 
-            className="py-0" 
-            pauseOnHover={false}
-            repeat={4}
-            duration="60s"
-            gap="1rem"
-          >
-            {items.map((item) => (
-              <div
-                key={`mobile-${item.id}`}
-                className="flex-shrink-0 w-[80vw] h-[450px] relative overflow-hidden bg-neutral-900 border-r border-white/5"
-              >
-                <img
-                  src={item.image}
-                  alt={`Gallery item ${item.id}`}
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-              </div>
-            ))}
-          </Marquee>
-        </div>
-      </section>
-    )
+    return <MobileGallery />
   }
 
-  return (
-    <section 
-      ref={targetRef}
-      data-theme="dark"
-      className="relative h-[400vh] bg-background-dark z-30"
-    >
-      <motion.div 
-        style={{ y: stickyY }}
-        className="relative h-screen w-full flex items-center overflow-hidden"
-      >
-        <motion.div 
-          style={{ x }}
-          className="flex flex-nowrap will-change-transform"
-        >
-          {items.map((item) => (
-            <div
-              key={item.id}
-              className="flex-shrink-0 w-[70vw] h-screen relative overflow-hidden bg-neutral-900 border-r border-white/10"
-            >
-              <img
-                src={item.image}
-                alt={`Gallery item ${item.id}`}
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-            </div>
-          ))}
-        </motion.div>
-      </motion.div>
-    </section>
-  )
+  return <DesktopGallery targetRef={targetRef} stickyY={stickyY} x={x} />
 }
 

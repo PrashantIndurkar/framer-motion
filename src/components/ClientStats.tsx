@@ -48,7 +48,7 @@ export const ClientStats = () => {
   return (
     <section 
       ref={sectionRef} 
-      className="relative pt-50 pb-40 md:pt-60 md:pb-60 lg:pt-[400px] lg:pb-[400px] overflow-hidden bg-[#f0f0f0] z-20"
+      className="relative pt-80 pb-60 md:pt-60 md:pb-60 lg:pt-[400px] lg:pb-[400px] overflow-hidden bg-[#f0f0f0] z-20"
     >
       {/* Background Arc Gallery */}
       <div className="absolute inset-0 z-20 pointer-events-none overflow-visible">
@@ -59,16 +59,16 @@ export const ClientStats = () => {
           endAngle={-15} 
           radiusLg={520}
           radiusMd={300}
-          radiusSm={180}
+          radiusSm={220}
           cardSizeLg={110}
           cardSizeMd={70}
-          cardSizeSm={45}
-          className="absolute top-[52%] md:top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2"
+          cardSizeSm={80}
+          className="absolute top-[38%] md:top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2"
         />
       </div>
 
       {/* Main Content: Headline and CTA */}
-      <Container className="relative z-30 flex flex-col items-center text-center">
+      <Container className="relative z-30 flex flex-col items-center text-center mt-32 md:mt-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

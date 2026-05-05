@@ -3,13 +3,13 @@
 import { motion } from "framer-motion";
 import { Text } from "@/components/ui/text";
 import { Container } from "@/components/ui/container";
-import { Button } from "@/components/ui/button";
 import Marquee from "@/components/ui/marquee";
 import { cn } from "@/lib/utils";
 import { AnimatedFolder } from "@/components/ui/3d-folder";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { Send } from "lucide-react";
 
+// Portfolio data used in ReceiveCardVisual
 const portfolioData = [
   {
     title: "Design Projects",
@@ -21,130 +21,145 @@ const portfolioData = [
   }
 ];
 
+/**
+ * Visual for the "Subscribe" card, demonstrating pricing and a call to action.
+ */
+const SubscribeCardVisual = () => (
+  <div className="w-full h-full p-4 pb-0">
+    <div className="w-full h-full rounded-t-[24px] overflow-hidden relative group/card">
+      {/* Background Gradient with Smooth Feeding Fade */}
+      <div className="absolute inset-0 bg-[#F0F0F0] [mask-image:linear-gradient(to_bottom,black_0%,black_40%,rgba(0,0,0,0.8)_60%,rgba(0,0,0,0.4)_80%,transparent_100%)]" />
+      
+      <div className="relative z-10 p-8 flex flex-col h-full">
+        <div className="flex justify-between items-center">
+          <motion.span 
+            initial={{ opacity: 0, x: -10 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            className="text-[24px] lg:text-[26px] font-serif italic font-bold tracking-[-0.05em] leading-none"
+            style={{ fontFamily: "var(--font-source-serif)" }}
+          >
+            Whenevr<sup className="text-[10px] align-top ml-0.5 font-sans not-italic">®</sup>
+          </motion.span>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            className="px-3 py-1 bg-white border border-black/[0.08] rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.03)] flex items-center justify-center"
+          >
+            <span className="text-sm font-semibold  text-black">Popular</span>
+          </motion.div>
+        </div>
+        
+        <div className="flex items-baseline gap-1.5 mt-3">
+          <span className="text-[44px] lg:text-[40px] font-bold tracking-[-0.04em] leading-none text-black">$2,995</span>
+          <span className="text-[16px] font-medium text-black/30 tracking-tight leading-none">/month</span>
+        </div>
+        
+        <div className="mt-6">
+          <AnimatedButton 
+            className="w-full h-[56px] shadow-[0_12px_24px_rgba(0,0,0,0.12)]"
+          >
+            Join today
+          </AnimatedButton>
+        </div>
+      </div>
+
+      {/* Decorative gradients */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-brand-blue/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover/card:bg-brand-blue/10 transition-colors duration-700" />
+      <div className="absolute bottom-0 left-0 w-32 h-32 bg-brand-purple/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+    </div>
+  </div>
+);
+
+/**
+ * Visual for the "Request" card, featuring infinite marquees and an animated send button.
+ */
+const RequestCardVisual = () => (
+  <div className="w-full h-full relative flex flex-col justify-center py-6 gap-3 overflow-hidden">
+    <Marquee className="[--duration:25s] [--gap:12px]" repeat={4} pauseOnHover={false}>
+      {["Branding", "Social Graphics", "UX Design", "Product Design"].map((tag) => (
+        <span key={tag} className="px-4 py-1.5 bg-[#F5F5F5] border border-black/[0.03] rounded-full text-[12px] font-bold text-black/70 whitespace-nowrap shadow-sm">
+          {tag}
+        </span>
+      ))}
+    </Marquee>
+    <Marquee className="[--duration:30s] [--gap:12px]" reverse repeat={4} pauseOnHover={false}>
+      {["Email Design", "Blog Graphics", "App Design", "Motion"].map((tag) => (
+        <span key={tag} className="px-4 py-1.5 bg-[#F5F5F5] border border-black/[0.03] rounded-full text-[12px] font-bold text-black/70 whitespace-nowrap shadow-sm">
+          {tag}
+        </span>
+      ))}
+    </Marquee>
+    <Marquee className="[--duration:25s] [--gap:12px]" repeat={4} pauseOnHover={false}>
+      {["Ad Creatives", "UI Design", "Packaging", "Illustration"].map((tag) => (
+        <span key={tag} className="px-4 py-1.5 bg-[#F5F5F5] border border-black/[0.03] rounded-full text-[12px] font-bold text-black/70 whitespace-nowrap shadow-sm">
+          {tag}
+        </span>
+      ))}
+    </Marquee>
+    
+    <div className="absolute inset-0 flex items-center justify-center z-20">
+      <motion.div 
+        initial="initial"
+        whileHover="hover"
+        className="bg-black rounded-2xl flex items-center justify-center shadow-2xl cursor-pointer overflow-hidden relative w-[96px] h-[96px]"
+      >
+        {/* W Icon */}
+        <motion.div
+          variants={{
+            initial: { y: 0, x: 0, opacity: 1, rotate: 3 },
+            hover: { y: -40, x: 40, opacity: 0, rotate: 15 }
+          }}
+          transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+          className="flex items-center justify-center"
+        >
+            <span style={{ fontFamily: "var(--font-source-serif)" }} className="text-white text-6xl font-serif italic font-semibold p-4 px-5">w</span>
+        </motion.div>
+
+        {/* Send Icon */}
+        <motion.div
+          variants={{
+            initial: { y: 40, x: -40, opacity: 0, rotate: -15 },
+            hover: { y: 0, x: 0, opacity: 1, rotate: 0 }
+          }}
+          transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+          className="absolute inset-0 flex items-center justify-center"
+        >
+          <Send className="text-white w-10 h-10" />
+        </motion.div>
+      </motion.div>
+    </div>
+  </div>
+);
+
+/**
+ * Visual for the "Receive" card, showing an animated folder opening.
+ */
+const ReceiveCardVisual = () => (
+  <div className="w-full h-full flex items-center justify-center p-4">
+    <AnimatedFolder 
+      title={portfolioData[0].title} 
+      projects={portfolioData[0].projects} 
+      className="scale-[0.7] sm:scale-[0.75] md:scale-[0.8] lg:scale-[0.85] translate-y-1 bg-transparent border-none shadow-none"
+    />
+  </div>
+);
+
 const HowItWorks = () => {
   const cards = [
     {
       title: "Subscribe",
       description: "Pick a plan and get started right away. No calls, no setup, just design on demand.",
-      visual: (
-        <div className="w-full h-full p-4 pb-0">
-          <div className="w-full h-full rounded-t-[24px] overflow-hidden relative group/card">
-            {/* Background Gradient with Smooth Feeding Fade */}
-            <div className="absolute inset-0 bg-[#F0F0F0] [mask-image:linear-gradient(to_bottom,black_0%,black_40%,rgba(0,0,0,0.8)_60%,rgba(0,0,0,0.4)_80%,transparent_100%)]" />
-            
-            <div className="relative z-10 p-8 flex flex-col h-full">
-              <div className="flex justify-between items-center">
-                <motion.span 
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  className="text-[24px] lg:text-[26px] font-serif italic font-bold tracking-[-0.05em] leading-none"
-                  style={{ fontFamily: "var(--font-source-serif)" }}
-                >
-                  Whenevr<sup className="text-[10px] align-top ml-0.5 font-sans not-italic">®</sup>
-                </motion.span>
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  className="px-3 py-1 bg-white border border-black/[0.08] rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.03)] flex items-center justify-center"
-                >
-                  <span className="text-sm font-semibold  text-black">Popular</span>
-                </motion.div>
-              </div>
-              
-              <div className="flex items-baseline gap-1.5 mt-3">
-                <span className="text-[44px] lg:text-[40px] font-bold tracking-[-0.04em] leading-none text-black">$2,995</span>
-                <span className="text-[16px] font-medium text-black/30 tracking-tight leading-none">/month</span>
-              </div>
-              
-              <div className="mt-6">
-                <AnimatedButton 
-                  className="w-full h-[56px] shadow-[0_12px_24px_rgba(0,0,0,0.12)]"
-                >
-                  Join today
-                </AnimatedButton>
-              </div>
-            </div>
-
-            {/* Decorative gradients */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-brand-blue/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover/card:bg-brand-blue/10 transition-colors duration-700" />
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-brand-purple/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-          </div>
-        </div>
-      )
+      visual: <SubscribeCardVisual />
     },
     {
       title: "Request",
       description: "Submit any design task you need. Landing pages, product visuals, brand assets, and more.",
-      visual: (
-        <div className="w-full h-full relative flex flex-col justify-center py-6 gap-3 overflow-hidden">
-          <Marquee className="[--duration:25s] [--gap:12px]" repeat={4} pauseOnHover={false}>
-            {["Branding", "Social Graphics", "UX Design", "Product Design"].map((tag) => (
-              <span key={tag} className="px-4 py-1.5 bg-[#F5F5F5] border border-black/[0.03] rounded-full text-[12px] font-bold text-black/70 whitespace-nowrap shadow-sm">
-                {tag}
-              </span>
-            ))}
-          </Marquee>
-          <Marquee className="[--duration:30s] [--gap:12px]" reverse repeat={4} pauseOnHover={false}>
-            {["Email Design", "Blog Graphics", "App Design", "Motion"].map((tag) => (
-              <span key={tag} className="px-4 py-1.5 bg-[#F5F5F5] border border-black/[0.03] rounded-full text-[12px] font-bold text-black/70 whitespace-nowrap shadow-sm">
-                {tag}
-              </span>
-            ))}
-          </Marquee>
-          <Marquee className="[--duration:25s] [--gap:12px]" repeat={4} pauseOnHover={false}>
-            {["Ad Creatives", "UI Design", "Packaging", "Illustration"].map((tag) => (
-              <span key={tag} className="px-4 py-1.5 bg-[#F5F5F5] border border-black/[0.03] rounded-full text-[12px] font-bold text-black/70 whitespace-nowrap shadow-sm">
-                {tag}
-              </span>
-            ))}
-          </Marquee>
-          
-          <div className="absolute inset-0 flex items-center justify-center z-20">
-            <motion.div 
-              initial="initial"
-              whileHover="hover"
-              className="bg-black rounded-2xl flex items-center justify-center shadow-2xl cursor-pointer overflow-hidden relative w-[96px] h-[96px]"
-            >
-              {/* W Icon */}
-              <motion.div
-                variants={{
-                  initial: { y: 0, x: 0, opacity: 1, rotate: 3 },
-                  hover: { y: -40, x: 40, opacity: 0, rotate: 15 }
-                }}
-                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                className="flex items-center justify-center"
-              >
-                 <span style={{ fontFamily: "var(--font-source-serif)" }} className="text-white text-6xl font-serif italic font-semibold p-4 px-5">w</span>
-              </motion.div>
-
-              {/* Send Icon */}
-              <motion.div
-                variants={{
-                  initial: { y: 40, x: -40, opacity: 0, rotate: -15 },
-                  hover: { y: 0, x: 0, opacity: 1, rotate: 0 }
-                }}
-                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                className="absolute inset-0 flex items-center justify-center"
-              >
-                <Send className="text-white w-10 h-10" />
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-      )
+      visual: <RequestCardVisual />
     },
     {
       title: "Receive",
       description: "Your design is delivered in a few business days. Simple, fast, and ready to use.",
-      visual: (
-        <div className="w-full h-full flex items-center justify-center p-4">
-           <AnimatedFolder 
-             title={portfolioData[0].title} 
-             projects={portfolioData[0].projects} 
-             className="scale-[0.7] sm:scale-[0.75] md:scale-[0.8] lg:scale-[0.85] translate-y-1 bg-transparent border-none shadow-none"
-           />
-        </div>
-      )
+      visual: <ReceiveCardVisual />
     }
   ];
 

@@ -9,7 +9,8 @@ import {
   Zap, 
   LayoutGrid, 
   ToggleRight, 
-  Lock 
+  Lock,
+  LucideIcon
 } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Text } from "@/components/ui/text";
@@ -57,6 +58,74 @@ const categories = [
   "Landing Pages",
 ];
 
+interface FeatureCardProps {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  index: number;
+}
+
+/**
+ * Individual feature card displaying an icon, title, and description.
+ */
+const FeatureCard = ({ icon: Icon, title, description, index }: FeatureCardProps) => (
+  <motion.div
+    initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+    viewport={{ once: true }}
+    transition={{ duration: 1.1, delay: 0.2 + index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+    whileHover={{ y: -5 }}
+    className="bg-white p-2 rounded-3xl border border-black/5 shadow-sm h-full group w-full"
+  >
+    <div className="bg-neutral-50 rounded-2xl h-full p-5">
+      <div className="pt-2">
+        <Icon className="w-10 h-10 text-black fill-current" />
+      </div>
+      <Text as="h3" variant="outfit" className="pt-6 text-lg font-semibold mb-1.5 text-black">
+        {title}
+      </Text>
+      <Text className="text-black/40 font-medium pb-4">
+        {description}
+      </Text>
+    </div>
+  </motion.div>
+);
+
+/**
+ * Marquee displaying the list of design categories.
+ */
+const CategoriesMarquee = () => (
+  <div className="relative mt-20">
+    {/* Edge Gradient Fades */}
+    <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#f0f0f0] via-[#f0f0f0]/80 to-transparent z-10"></div>
+    <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#f0f0f0] via-[#f0f0f0]/80 to-transparent z-10"></div>
+    
+    <motion.div
+      initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      viewport={{ once: true }}
+      transition={{ duration: 1.1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <Marquee 
+        className="[--duration:40s] [--gap:12px] py-4" 
+        pauseOnHover={false} 
+        repeat={6}
+      >
+        {categories.map((category, index) => (
+          <div
+            key={index}
+            className="px-6 py-1.5 rounded-full bg-white border border-black/5 shadow-sm cursor-default whitespace-nowrap mx-1"
+          >
+            <Text className="font-semibold text-black text-lg font-sans">
+              {category}
+            </Text>
+          </div>
+        ))}
+      </Marquee>
+    </motion.div>
+  </div>
+);
+
 export const Features = () => {
   return (
     <section className="bg-[#f0f0f0] py-24 md:py-20 overflow-hidden">
@@ -98,60 +167,17 @@ export const Features = () => {
         {/* Feature Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-16 max-w-5xl mx-auto">
           {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
-              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.1, delay: 0.2 + index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -5 }}
-              className="bg-white p-2 rounded-3xl border border-black/5 shadow-sm h-full group w-full"
-            >
-              <div className="bg-neutral-50 rounded-2xl h-full p-5">
-                <div className="pt-2">
-                  <feature.icon className="w-10 h-10 text-black fill-current" />
-                </div>
-                <Text as="h3" variant="outfit" className="pt-6 text-lg font-semibold mb-1.5 text-black">
-                  {feature.title}
-                </Text>
-                <Text className="text-black/40 font-medium pb-4">
-                  {feature.description}
-                </Text>
-              </div>
-            </motion.div>
+            <FeatureCard 
+              key={index} 
+              icon={feature.icon} 
+              title={feature.title} 
+              description={feature.description} 
+              index={index} 
+            />
           ))}
         </div>
 
-        {/* Category Marquee */}
-        <div className="relative mt-20">
-          {/* Edge Gradient Fades */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#f0f0f0] via-[#f0f0f0]/80 to-transparent z-10"></div>
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#f0f0f0] via-[#f0f0f0]/80 to-transparent z-10"></div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <Marquee 
-              className="[--duration:40s] [--gap:12px] py-4" 
-              pauseOnHover={false} 
-              repeat={6}
-            >
-              {categories.map((category, index) => (
-                <div
-                  key={index}
-                  className="px-6 py-1.5 rounded-full bg-white border border-black/5 shadow-sm cursor-default whitespace-nowrap mx-1"
-                >
-                  <Text className="font-semibold text-black text-lg font-sans">
-                    {category}
-                  </Text>
-                </div>
-              ))}
-            </Marquee>
-          </motion.div>
-        </div>
+        <CategoriesMarquee />
       </Container>
     </section>
   );
